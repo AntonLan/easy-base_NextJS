@@ -7,7 +7,8 @@ interface AuthenticationState {
 	password: string
 	email: string
 	isLoading: boolean
-	error: string | undefined
+	isAuth: boolean
+	error: string
 	changeEmail: (e: ChangeEvent<HTMLInputElement>) => void
 	changePassword: (e: ChangeEvent<HTMLInputElement>) => void
 	changeUserName: (e: ChangeEvent<HTMLInputElement>) => void
@@ -20,8 +21,9 @@ const useAuthenticationStore = create<AuthenticationState>(set => ({
 	userName: '',
 	password: '',
 	email: '',
+	isAuth: false,
 	isLoading: false,
-	error: undefined,
+	error: '',
 	changeEmail: (e) => {
 		set(() => ({ email: e.target.value }))
 	},
@@ -34,14 +36,14 @@ const useAuthenticationStore = create<AuthenticationState>(set => ({
 	singIn: async (email: string, password: string) => {
 		if (email.length === 0 || password.length === 0) return
 		try {
-			set(() => ({ isLoading: true }))
+			set(() => ({ isLoading: true, error: '' }))
 			const res = await AuthenticationService.singIn(email, password)
 			localStorage.setItem('id', res.user._id)
 			localStorage.setItem('token', res.accessToken)
 			set(() => ({
 				password: '',
 				email: '',
-				error: undefined,
+				isAuth: true,
 				isLoading: false
 			}))
 		} catch (e: any) {
@@ -49,6 +51,7 @@ const useAuthenticationStore = create<AuthenticationState>(set => ({
 				password: '',
 				email: '',
 				error: e.message,
+				isAuth: false,
 				isLoading: false
 			}))
 		}
@@ -56,7 +59,7 @@ const useAuthenticationStore = create<AuthenticationState>(set => ({
 	singUp: async (userName: string, email: string, password: string) => {
 		if (email.length === 0 || password.length === 0 || userName.length === 0) return
 		try {
-			set(() => ({ isLoading: true }))
+			set(() => ({ isLoading: true, error: '' }))
 			const res = await AuthenticationService.singUp(userName, email, password)
 			localStorage.setItem('id', res.user._id)
 			localStorage.setItem('token', res.accessToken)
@@ -64,7 +67,6 @@ const useAuthenticationStore = create<AuthenticationState>(set => ({
 				userName: '',
 				password: '',
 				email: '',
-				error: undefined,
 				isLoading: false
 			}))
 		} catch (e: any) {

@@ -1,36 +1,50 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AuthenticationLayout from '@/layout/AuthenticationLayout'
 import style from '@/styles/Login.module.scss'
 import useAuthenticationStore from '@/store/AuthenticationStore'
 import { useRouter } from 'next/router'
 
 const Registration = () => {
-	const {
-		userName,
-		email,
-		password,
-		changePassword,
-		changeEmail,
-		isLoading,
-		error,
-		singUp,
-		changeUserName
-	} = useAuthenticationStore()
+	const singUp = useAuthenticationStore(s => s.singUp)
+	const userName = useAuthenticationStore(s => s.userName)
+	const email = useAuthenticationStore(s => s.email)
+	const password = useAuthenticationStore(s => s.password)
+	const changeUserName = useAuthenticationStore(s => s.changeUserName)
+	const changePassword = useAuthenticationStore(s => s.changePassword)
+	const changeEmail = useAuthenticationStore(s => s.changeEmail)
+	const isLoading = useAuthenticationStore(s => s.isLoading)
+	const error = useAuthenticationStore(s => s.error)
+	const isAuth = useAuthenticationStore(s => s.isAuth)
 	const router = useRouter()
+
+
+	useEffect(() => {
+		checkAuth()
+	}, [isAuth])
 
 	const handleSingUp = () => {
 		singUp(userName, email, password)
 	}
 
+	const handleLogIn = () => {
+		router.push('/login')
+	}
+
+	const checkAuth = () => {
+		let token = localStorage.getItem('token')
+		if (token) {
+			router.push('/')
+		}
+	}
 
 
-	if(isLoading){
+	if (isLoading) {
 		return <AuthenticationLayout>
 			<h1>Загрузка</h1>
 		</AuthenticationLayout>
 	}
 
-	if(error){
+	if (error) {
 		return <AuthenticationLayout>
 			<h1>{error}</h1>
 		</AuthenticationLayout>
@@ -38,23 +52,26 @@ const Registration = () => {
 
 
 	return (
-	<AuthenticationLayout>
-		<div className={style.wrapper}>
-			<h1>Registration</h1>
-			<form>
-				<input
-					onChange={changeUserName}
-					value={userName} type='text' placeholder='Enter user name' />
-				<input
-					onChange={changeEmail}
-					value={email} type='email' placeholder='Enter email' />
-				<input
-					onChange={changePassword}
-					value={password} type='password' placeholder='Enter password' />
-			</form>
-			<button onClick={handleSingUp}>Sing Up</button>
-		</div>
-	</AuthenticationLayout>
+		<AuthenticationLayout>
+			<div className={style.wrapper}>
+				<h1>Registration</h1>
+				<form>
+					<input
+						onChange={changeUserName}
+						value={userName} type='text' placeholder='Enter user name' />
+					<input
+						onChange={changeEmail}
+						value={email} type='email' placeholder='Enter email' />
+					<input
+						onChange={changePassword}
+						value={password} type='password' placeholder='Enter password' />
+				</form>
+				<div className='flex justify-between'>
+					<button onClick={handleSingUp}>Sing Up</button>
+					<button onClick={handleLogIn}>Sing In</button>
+				</div>
+			</div>
+		</AuthenticationLayout>
 	)
 }
 
