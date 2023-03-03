@@ -14,7 +14,7 @@ interface AuthenticationState {
 	changeUserName: (e: ChangeEvent<HTMLInputElement>) => void
 	singIn: (email: string, password: string) => void
 	singUp: (userName: string, email: string, password: string) => void
-
+	singOut: () => void
 }
 
 const useAuthenticationStore = create<AuthenticationState>(set => ({
@@ -78,7 +78,12 @@ const useAuthenticationStore = create<AuthenticationState>(set => ({
 				isLoading: false
 			}))
 		}
+	},
+	singOut: () => {
+		set(() => ({ isAuth: false}))
+		localStorage.clear()
 	}
 }))
 
 export default useAuthenticationStore
+
