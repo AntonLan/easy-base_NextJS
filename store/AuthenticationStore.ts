@@ -1,82 +1,89 @@
-import { create } from 'zustand'
-import { ChangeEvent } from 'react'
 import AuthenticationService from '@/service/AuthenticationService'
+import { makeObservable, observable } from 'mobx'
+import { ChangeEvent } from 'react'
 
-interface AuthenticationState {
-	userName: string
-	password: string
-	email: string
-	isLoading: boolean
-	error: string | undefined
-	changeEmail: (e: ChangeEvent<HTMLInputElement>) => void
-	changePassword: (e: ChangeEvent<HTMLInputElement>) => void
-	changeUserName: (e: ChangeEvent<HTMLInputElement>) => void
-	singIn: (email: string, password: string) => void
-	singUp: (userName: string, email: string, password: string) => void
+class AuthenticationStore {
+	userName: string = ''
+	password: string = ''
+	email: string = ''
+	isAuth: boolean = false
+	isLoading: boolean = false
+	error: string = ''
 
-}
 
-const useAuthenticationStore = create<AuthenticationState>(set => ({
-	userName: '',
-	password: '',
-	email: '',
-	isLoading: false,
-	error: undefined,
-	changeEmail: (e) => {
-		set(() => ({ email: e.target.value }))
-	},
-	changePassword: (e) => {
-		set(() => ({ password: e.target.value }))
-	},
-	changeUserName: (e) => {
-		set(() => ({ userName: e.target.value }))
-	},
-	singIn: async (email: string, password: string) => {
-		if (email.length === 0 || password.length === 0) return
+	constructor() {
+		makeObservable(this, {
+			userName: observable,
+			password: observable,
+			email: observable,
+			isAuth: observable,
+			isLoading: observable,
+			error: observable
+		})
+	}
+
+	changeEmail = (e: ChangeEvent<HTMLInputElement>) => {
+		this.email = e.target.value
+	}
+
+	changePassword = (e: ChangeEvent<HTMLInputElement>) => {
+		this.password = e.target.value
+	}
+
+	changeUserName = (e: ChangeEvent<HTMLInputElement>) => {
+		this.userName = e.target.value
+	}
+
+	singIn = async () => {
+		if (this.email.length === 0 || this.password.length === 0) return
 		try {
-			set(() => ({ isLoading: true }))
-			const res = await AuthenticationService.singIn(email, password)
+			this.isLoading = true
+			this.error = ''
+			const res = await AuthenticationService.singIn(this.email, this.password)
 			localStorage.setItem('id', res.user._id)
 			localStorage.setItem('token', res.accessToken)
-			set(() => ({
-				password: '',
-				email: '',
-				error: undefined,
-				isLoading: false
-			}))
+			this.password = ''
+			this.email = ''
+			this.isAuth = true
+			this.isLoading = false
 		} catch (e: any) {
-			set(() => ({
-				password: '',
-				email: '',
-				error: e.message,
-				isLoading: false
-			}))
-		}
-	},
-	singUp: async (userName: string, email: string, password: string) => {
-		if (email.length === 0 || password.length === 0 || userName.length === 0) return
-		try {
-			set(() => ({ isLoading: true }))
-			const res = await AuthenticationService.singUp(userName, email, password)
-			localStorage.setItem('id', res.user._id)
-			localStorage.setItem('token', res.accessToken)
-			set(() => ({
-				userName: '',
-				password: '',
-				email: '',
-				error: undefined,
-				isLoading: false
-			}))
-		} catch (e: any) {
-			set(() => ({
-				userName: '',
-				password: '',
-				email: '',
-				error: e.message,
-				isLoading: false
-			}))
+			this.password = ''
+			this.email = ''
+			this.error = e.message
+			this.isAuth = false
+			this.isLoading = false
 		}
 	}
-}))
 
-export default useAuthenticationStore
+	singUp = async () => {
+		if (this.email.length === 0 || this.password.length === 0 || this.userName.length === 0) return
+		try {
+			this.isLoading = true
+			this.error = ''
+			const res = await AuthenticationService.singUp(this.userName, this.email, this.password)
+			localStorage.setItem('id', res.user._id)
+			localStorage.setItem('token', res.accessToken)
+			this.userName = ''
+			this.password = ''
+			this.email = ''
+			this.isLoading = false
+		} catch (e: any) {
+
+			this.userName = ''
+			this.password = ''
+			this.email = ''
+			this.error = e.message
+			this.isLoading = false
+
+		}
+	}
+
+	singOut = () => {
+		this.isAuth = false
+		localStorage.clear()
+		console.log("check",this.isAuth)
+	}
+}
+
+export default AuthenticationStore
+

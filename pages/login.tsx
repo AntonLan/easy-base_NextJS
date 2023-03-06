@@ -1,33 +1,49 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import AuthenticationLayout from '@/layout/AuthenticationLayout'
 import style from '@/styles/Login.module.scss'
-import useAuthenticationStore from '@/store/AuthenticationStore'
 import { useRouter } from 'next/router'
+import AuthenticationStore from '@/store/AuthenticationStore'
+import { inject, observer } from 'mobx-react'
+import InjectNames from '@/store/configuration/storeIdentifier'
 
-const Login: FC = () => {
-	const {
-		email,
-		password,
-		changePassword,
-		changeEmail,
-		isLoading,
-		error,
-		singIn } = useAuthenticationStore()
+interface LoginProps {
+	authenticationStore?: AuthenticationStore
+}
+
+
+const Login: FC<LoginProps> = ({authenticationStore}) => {
 	const router = useRouter()
 
+
+	useEffect(() => {
+		checkAuth()
+	}, [authenticationStore?.isAuth])
+
+
 	const handleLogIn = () => {
-		singIn(email, password)
+		authenticationStore?.singIn()
 	}
 
-	if(isLoading){
+	const handleSingUp = () => {
+		router.push('/registration')
+	}
+
+	const checkAuth = () => {
+		let token = localStorage.getItem('token')
+		if (token) {
+			router.push('/')
+		}
+	}
+
+	if (authenticationStore?.isLoading) {
 		return <AuthenticationLayout>
 			<h1>Загрузка</h1>
 		</AuthenticationLayout>
 	}
 
-	if(error){
+	if (authenticationStore?.error) {
 		return <AuthenticationLayout>
-			<h1>{error}</h1>
+			<h1>{authenticationStore?.error}</h1>
 		</AuthenticationLayout>
 	}
 
@@ -37,16 +53,19 @@ const Login: FC = () => {
 				<h1>Login</h1>
 				<form>
 					<input
-						onChange={changeEmail}
-						value={email} type='email' placeholder='Enter email' />
+						onChange={authenticationStore?.changeEmail}
+						value={authenticationStore?.email} type='email' placeholder='Enter email' />
 					<input
-						onChange={changePassword}
-						value={password} type='password' placeholder='Enter password' />
+						onChange={authenticationStore?.changePassword}
+						value={authenticationStore?.password} type='password' placeholder='Enter password' />
 				</form>
-				<button onClick={handleLogIn}>Sing In</button>
+				<div className='flex justify-between'>
+					<button onClick={handleLogIn}>Sing In</button>
+					<button onClick={handleSingUp}>Sing up</button>
+				</div>
 			</div>
 		</AuthenticationLayout>
 	)
 }
 
-export default Login
+export default inject(InjectNames.AuthenticationStore)(observer(Login))

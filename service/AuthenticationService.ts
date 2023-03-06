@@ -1,31 +1,28 @@
 import axios from 'axios'
 
-const AuthenticationService = {
+class AuthenticationService {
 
-
-	singIn: async (email: string, password: string) => {
+	static singIn = async (email: string, password: string) => {
 		const res = await axios.post('http://localhost:5002/api/auth/login',
 			{
 				email: email,
 				password: password
 			})
 		return res.data
-	},
+	}
 
-
-	singUp: async (userName: string, email: string, password: string) => {
+	 static singUp = async (userName: string, email: string, password: string) => {
 		const res = await axios.post('http://localhost:5002/api/auth/register', {
 			userName: userName,
 			email: email,
 			password: password
 		})
 		return res.data
-	},
-
-	singOut: () => {
-		localStorage.clear()
 	}
 
+	static singOut = () => {
+		localStorage.clear()
+	}
 }
 
 export default AuthenticationService
