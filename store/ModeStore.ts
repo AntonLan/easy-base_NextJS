@@ -1,22 +1,22 @@
-import { create } from 'zustand'
 import { ColorModeEnum } from '@/model/ColorModeEnum'
+import { makeObservable, observable } from 'mobx'
 
-interface ModeState {
-	darkMode: boolean
-	switchMode: (mode: boolean) => void
-}
+class ModeStore {
+	darkMode: boolean = false
+	constructor() {
+		makeObservable(this, {
+			darkMode: observable,
+		})
+	}
 
-const useModeStore = create<ModeState>(set => ({
-	darkMode: false,
-	switchMode: darkMode => {set(state => ({
-			darkMode: !state.darkMode
-		}))
-		if (darkMode) {
+	switchMode = () => {
+			this.darkMode = !this.darkMode
+		if (this.darkMode) {
 			localStorage.theme = ColorModeEnum.LIGHT
 		} else {
 			localStorage.theme = ColorModeEnum.DARK
 		}
 	}
-}))
+}
 
-export default useModeStore
+export default ModeStore

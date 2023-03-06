@@ -1,28 +1,27 @@
 import { FC, useEffect } from 'react'
 import AuthenticationLayout from '@/layout/AuthenticationLayout'
 import style from '@/styles/Login.module.scss'
-import useAuthenticationStore from '@/store/AuthenticationStore'
 import { useRouter } from 'next/router'
+import AuthenticationStore from '@/store/AuthenticationStore'
+import { inject, observer } from 'mobx-react'
+import InjectNames from '@/store/configuration/storeIdentifier'
 
-const Login: FC = () => {
-	const singIn = useAuthenticationStore(s => s.singIn)
-	const email = useAuthenticationStore(s => s.email)
-	const password = useAuthenticationStore(s => s.password)
-	const changePassword = useAuthenticationStore(s => s.changePassword)
-	const changeEmail = useAuthenticationStore(s => s.changeEmail)
-	const isLoading = useAuthenticationStore(s => s.isLoading)
-	const error = useAuthenticationStore(s => s.error)
-	const isAuth = useAuthenticationStore(s => s.isAuth)
+interface LoginProps {
+	authenticationStore?: AuthenticationStore
+}
+
+
+const Login: FC<LoginProps> = ({authenticationStore}) => {
 	const router = useRouter()
 
 
 	useEffect(() => {
 		checkAuth()
-	}, [isAuth])
+	}, [authenticationStore?.isAuth])
 
 
 	const handleLogIn = () => {
-		singIn(email, password)
+		authenticationStore?.singIn()
 	}
 
 	const handleSingUp = () => {
@@ -36,15 +35,15 @@ const Login: FC = () => {
 		}
 	}
 
-	if (isLoading) {
+	if (authenticationStore?.isLoading) {
 		return <AuthenticationLayout>
 			<h1>Загрузка</h1>
 		</AuthenticationLayout>
 	}
 
-	if (error) {
+	if (authenticationStore?.error) {
 		return <AuthenticationLayout>
-			<h1>{error}</h1>
+			<h1>{authenticationStore?.error}</h1>
 		</AuthenticationLayout>
 	}
 
@@ -54,11 +53,11 @@ const Login: FC = () => {
 				<h1>Login</h1>
 				<form>
 					<input
-						onChange={changeEmail}
-						value={email} type='email' placeholder='Enter email' />
+						onChange={authenticationStore?.changeEmail}
+						value={authenticationStore?.email} type='email' placeholder='Enter email' />
 					<input
-						onChange={changePassword}
-						value={password} type='password' placeholder='Enter password' />
+						onChange={authenticationStore?.changePassword}
+						value={authenticationStore?.password} type='password' placeholder='Enter password' />
 				</form>
 				<div className='flex justify-between'>
 					<button onClick={handleLogIn}>Sing In</button>
@@ -69,4 +68,4 @@ const Login: FC = () => {
 	)
 }
 
-export default Login
+export default inject(InjectNames.AuthenticationStore)(observer(Login))

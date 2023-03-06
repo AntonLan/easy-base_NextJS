@@ -1,22 +1,25 @@
-import { create } from 'zustand'
 import UserService from '@/service/UserService'
+import { makeObservable, observable } from 'mobx'
 
 
-interface UserState {
-	user: any
-	getUserData: (id: string | null, token: string | null) => void
-}
+class UserStore {
+	user = {}
 
-const useUserStore = create<UserState>(set => ({
-	user: {},
-	getUserData: async (id: string | null, token: string | null) => {
+	constructor() {
+		makeObservable(this, {
+			user: observable,
+		})
+	}
+
+
+	getUserData = async (id: string | null, token: string | null) => {
 		try {
 			const res = await UserService.getUserData(id, token)
-			set(() => ({ user: res }))
+			 this.user = res
 		} catch (e) {
 			console.log(e)
 		}
 	}
-}))
+}
 
-export default useUserStore
+export default UserStore
