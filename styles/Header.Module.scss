@@ -1,0 +1,8 @@
+.header {
+  @apply sticky flex justify-between items-center left-0 top-0 w-full h-[80px] bg-amber-50 px-2.5;
+
+  .userWrapper {
+    @apply flex items-center gap-3;
+  }
+
+}

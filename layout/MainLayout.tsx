@@ -1,5 +1,6 @@
 import { FC, ReactNode } from 'react'
 import Head from 'next/head'
+import Header from '@/components/Header'
 
 interface MainLayoutProps {
 	children: ReactNode
@@ -14,6 +15,7 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => {
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 			</Head>
 			<main>
+				<Header/>
 				{children}
 			</main>
 		</>

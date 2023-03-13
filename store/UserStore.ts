@@ -1,9 +1,10 @@
 import UserService from '@/service/UserService'
 import { makeObservable, observable } from 'mobx'
+import { UserType } from '@/model/UserType'
 
 
 class UserStore {
-	user = {}
+	user: UserType = {}
 
 	constructor() {
 		makeObservable(this, {

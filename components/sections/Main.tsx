@@ -1,7 +1,5 @@
 import React, { FC, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import MainLayout from '@/layout/MainLayout'
-import ToggleDarkMode from '@/components/ToggleDarkMode'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import UserStore from '@/store/UserStore'
@@ -13,7 +11,7 @@ interface MainProps {
 }
 
 
-const Main: FC<MainProps> = ({userStore, authenticationStore}) => {
+const Main: FC<MainProps> = ({ userStore, authenticationStore }) => {
 	const router = useRouter()
 
 
@@ -34,11 +32,9 @@ const Main: FC<MainProps> = ({userStore, authenticationStore}) => {
 	}
 
 	return (
-		<MainLayout>
-			<div className='bg-amber-400 dark:bg-black w-[200px] h-[200px]'>
-				<button onClick={authenticationStore?.singOut}>sing out</button>
-			</div>
-		</MainLayout>
+		<>
+			<h1 className='mt-1.5'>Главная страница</h1>
+		</>
 	)
 }
 
