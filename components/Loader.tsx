@@ -3,15 +3,8 @@ import { FC } from 'react'
 
 const Loader: FC = () => {
 	return (
-		<div className='flex items-center justify-center space-x-2'>
-			<div
-				className='inline-block h-8 w-8 animate-[spinner-grow_0.75s_linear_infinite] rounded-full bg-current align-[-0.125em] text-primary opacity-0 motion-reduce:animate-[spinner-grow_1.5s_linear_infinite]'
-				role='status'>
-    <span
-			className='!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]'
-		>Loading...</span
-		>
-			</div>
+		<div className="fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center">
+			<div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
 		</div>
 	)
 }

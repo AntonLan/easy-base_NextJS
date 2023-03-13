@@ -81,7 +81,6 @@ class AuthenticationStore {
 	singOut = () => {
 		this.isAuth = false
 		localStorage.clear()
-		console.log("check",this.isAuth)
 	}
 }
 
