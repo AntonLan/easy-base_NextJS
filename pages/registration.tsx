@@ -29,7 +29,7 @@ const Registration: FC<RegistrationProps> = ({authenticationStore}) => {
 	const checkAuth = () => {
 		let token = localStorage.getItem('token')
 		if (token) {
-			router.push('/')
+			router.replace('/')
 		}
 	}
 

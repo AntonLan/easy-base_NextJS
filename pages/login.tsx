@@ -5,13 +5,14 @@ import { useRouter } from 'next/router'
 import AuthenticationStore from '@/store/AuthenticationStore'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
+import Loader from '@/components/Loader'
 
 interface LoginProps {
 	authenticationStore?: AuthenticationStore
 }
 
 
-const Login: FC<LoginProps> = ({authenticationStore}) => {
+const Login: FC<LoginProps> = ({ authenticationStore }) => {
 	const router = useRouter()
 
 
@@ -31,13 +32,13 @@ const Login: FC<LoginProps> = ({authenticationStore}) => {
 	const checkAuth = () => {
 		let token = localStorage.getItem('token')
 		if (token) {
-			router.push('/')
+			router.replace('/')
 		}
 	}
 
 	if (authenticationStore?.isLoading) {
 		return <AuthenticationLayout>
-			<h1>Загрузка</h1>
+			<Loader />
 		</AuthenticationLayout>
 	}
 

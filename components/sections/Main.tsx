@@ -29,14 +29,13 @@ const Main: FC<MainProps> = ({userStore, authenticationStore}) => {
 	const checkAuth = () => {
 		let token = localStorage.getItem('token')
 		if (!token) {
-			router.push('/login')
+			router.replace('/login')
 		}
 	}
 
 	return (
 		<MainLayout>
 			<div className='bg-amber-400 dark:bg-black w-[200px] h-[200px]'>
-				{/*<ToggleDarkMode />*/}
 				<button onClick={authenticationStore?.singOut}>sing out</button>
 			</div>
 		</MainLayout>
