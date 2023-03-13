@@ -4,6 +4,7 @@ import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import UserStore from '@/store/UserStore'
 import AuthenticationStore from '@/store/AuthenticationStore'
+import Table from '@/components/Table/Table'
 
 interface MainProps {
 	userStore?: UserStore
@@ -17,8 +18,8 @@ const Main: FC<MainProps> = ({ userStore, authenticationStore }) => {
 
 	useEffect(() => {
 		checkAuth()
-		const id = localStorage.getItem('id')
-		const token = localStorage.getItem('token')
+		let id = localStorage.getItem('id')
+		let token = localStorage.getItem('token')
 		if (id && token) {
 			userStore?.getUserData(id, token)
 		}
@@ -33,7 +34,8 @@ const Main: FC<MainProps> = ({ userStore, authenticationStore }) => {
 
 	return (
 		<>
-			<h1 className='mt-1.5'>Главная страница</h1>
+			<h1 className='text-center mt-2 mb-1'>Easy Base</h1>
+			<Table/>
 		</>
 	)
 }

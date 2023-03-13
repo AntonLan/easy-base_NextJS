@@ -1,5 +1,5 @@
 import UserService from '@/service/UserService'
-import { makeObservable, observable } from 'mobx'
+import { makeObservable, observable, runInAction } from 'mobx'
 import { UserType } from '@/model/UserType'
 
 
@@ -8,7 +8,7 @@ class UserStore {
 
 	constructor() {
 		makeObservable(this, {
-			user: observable,
+			user: observable
 		})
 	}
 
@@ -16,7 +16,9 @@ class UserStore {
 	getUserData = async (id: string | null, token: string | null) => {
 		try {
 			const res = await UserService.getUserData(id, token)
-			 this.user = res
+			runInAction(() => {
+				this.user = res
+			})
 		} catch (e) {
 			console.log(e)
 		}
