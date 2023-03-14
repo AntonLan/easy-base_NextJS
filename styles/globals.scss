@@ -12,3 +12,20 @@
 body {
     font-family: 'Work Sans', sans-serif;
 }
+
+.main-container {
+    display: flex;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    background: #dfe2e3;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(37, 99, 235, 0.85);
+    border-radius: 5px;
+}

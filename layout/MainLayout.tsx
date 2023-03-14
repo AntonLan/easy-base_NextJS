@@ -1,6 +1,7 @@
-import { FC, ReactNode } from 'react'
+import React, { FC, ReactNode } from 'react'
 import Head from 'next/head'
 import Header from '@/components/Header'
+import SideBar from '@/components/SideBar'
 
 interface MainLayoutProps {
 	children: ReactNode
@@ -16,7 +17,10 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => {
 			</Head>
 			<main>
 				<Header/>
-				{children}
+				<div className='main-container'>
+					<SideBar />
+					{children}
+				</div>
 			</main>
 		</>
 	)

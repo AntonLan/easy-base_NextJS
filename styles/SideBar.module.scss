@@ -1,0 +1,26 @@
+.sidebarContainer {
+  @apply w-64 dark:bg-gray-800 dark:border-gray-700;
+
+  .sidebar {
+    @apply h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800;
+
+    ul {
+      @apply space-y-2;
+
+      li {
+        @apply mt-[50%];
+
+        .navigation {
+          @apply flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700;
+
+
+          span {
+            @apply ml-3;
+          }
+        }
+      }
+    }
+  }
+
+
+}

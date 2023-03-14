@@ -34,7 +34,6 @@ const Main: FC<MainProps> = ({ userStore, authenticationStore }) => {
 
 	return (
 		<>
-			<h1 className='text-center mt-2 mb-1'>Easy Base</h1>
 			<Table/>
 		</>
 	)
