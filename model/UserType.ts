@@ -2,7 +2,7 @@ import { OrganizationType } from '@/model/OrganizationType'
 import { OrderType } from '@/model/OrderType'
 
 export type UserType = {
-	id?: string,
+	_id?: string,
 	userName?: string,
 	email?: string,
 	organizations?: OrganizationType[],
