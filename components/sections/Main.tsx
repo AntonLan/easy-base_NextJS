@@ -4,7 +4,7 @@ import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import UserStore from '@/store/UserStore'
 import AuthenticationStore from '@/store/AuthenticationStore'
-import Table from '@/components/Table/Table'
+import Table from '@/components/table/Table'
 
 interface MainProps {
 	userStore?: UserStore

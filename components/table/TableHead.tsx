@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import style from '@/styles/Table.module.scss'
 import Link from 'next/link'
-import SvgSort from '@/components/Table/SvgSort'
+import SvgSort from '@/components/table/SvgSort'
 
 const TableHead: FC = () => {
 	return (

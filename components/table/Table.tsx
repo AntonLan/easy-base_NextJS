@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import TableHead from '@/components/Table/TableHead'
-import TableRow from '@/components/Table/TableRow'
+import TableHead from '@/components/table/TableHead'
+import TableRow from '@/components/table/TableRow'
 import UserStore from '@/store/UserStore'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'

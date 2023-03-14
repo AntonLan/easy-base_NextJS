@@ -5,10 +5,12 @@ import { UserType } from '@/model/UserType'
 
 class UserStore {
 	user: UserType = {}
+	isOpen: boolean = false
 
 	constructor() {
 		makeObservable(this, {
-			user: observable
+			user: observable,
+			isOpen: observable
 		})
 	}
 
@@ -23,6 +25,13 @@ class UserStore {
 			console.log(e)
 		}
 	}
+
+	openModal = () => {
+		runInAction(() => {
+			this.isOpen = !this.isOpen
+		})
+	}
+
 }
 
 export default UserStore

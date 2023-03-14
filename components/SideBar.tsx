@@ -1,8 +1,17 @@
 import { FC } from 'react'
 import Link from 'next/link'
 import style from '@/styles/SideBar.module.scss'
+import UserStore from '@/store/UserStore'
+import { inject, observer } from 'mobx-react'
+import InjectNames from '@/store/configuration/storeIdentifier'
+import CreateOrganizationModal from '@/components/modal/CreateOrganizationModal'
 
-const SideBar: FC = () => {
+interface SideBarProps {
+	userStore?: UserStore
+}
+
+
+const SideBar: FC<SideBarProps> = ({userStore}) => {
 	return (
 		<div className={style.sidebarContainer}>
 			<div className={style.sidebar}>
@@ -14,8 +23,15 @@ const SideBar: FC = () => {
 					</li>
 					<li>
 						<Link href='/organization' className={style.navigation}>
-							<span>organization</span>
+							<span>Organization</span>
 						</Link>
+					</li>
+					<li>
+						<button
+							onClick={userStore?.openModal}
+							className={style.createBtn}>
+							Create organization
+						</button>
 					</li>
 				</ul>
 			</div>
@@ -23,4 +39,4 @@ const SideBar: FC = () => {
 	)
 }
 
-export default SideBar
+export default inject(InjectNames.UserStore)(observer(SideBar))
