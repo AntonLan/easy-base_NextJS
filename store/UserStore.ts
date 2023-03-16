@@ -1,10 +1,12 @@
 import UserService from '@/service/UserService'
 import { makeObservable, observable, runInAction } from 'mobx'
 import { UserType } from '@/model/UserType'
+import { OrganizationType } from '@/model/OrganizationType'
 
 
 class UserStore {
 	user: UserType = {}
+	organization: OrganizationType = {}
 	isOpen: boolean = false
 
 	constructor() {
@@ -26,9 +28,34 @@ class UserStore {
 		}
 	}
 
+	changeOrganizationHandler = (event: any) => {
+		this.organization = { ...this.organization, [event?.target.name]: event?.target.value }
+	}
+
+	createOrganization = async () => {
+		const reqBody = {
+			...this.organization,
+			userId: this.user._id
+		}
+		try {
+			const res = await UserService.createOrganization(reqBody)
+			runInAction(() => {
+				this.user.organizations?.push(res)
+				this.isOpen = !this.isOpen
+				this.organization = {}
+			})
+
+		} catch (e) {
+			console.log(e)
+		}
+
+
+	}
+
 	openModal = () => {
 		runInAction(() => {
 			this.isOpen = !this.isOpen
+			this.organization = {}
 		})
 	}
 

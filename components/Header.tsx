@@ -15,9 +15,7 @@ interface HeaderProps {
 const Header: FC<HeaderProps> = ({ authenticationStore }) => {
 	return (
 		<div className={style.header}>
-			<Link
-				as="style"
-				href={'/'}>
+			<Link href='/'>
 				<Image
 					priority={true}
 					src={Logo}
