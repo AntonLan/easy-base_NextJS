@@ -3,6 +3,8 @@ import AuthenticationStore from '@/store/AuthenticationStore'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import UserInitial from '@/components/UserInitial'
+import Image from 'next/image'
+import Logo from '@/assets/logo/Light Logo.svg'
 import style from '@/styles/Header.module.scss'
 
 interface HeaderProps {
@@ -12,7 +14,11 @@ interface HeaderProps {
 const Header: FC<HeaderProps> = ({ authenticationStore }) => {
 	return (
 		<div className={style.header}>
-			<h1>Header</h1>
+			<Image
+				src={Logo}
+				alt='Easy Base Logo'
+				width={73.5}
+				height={41}/>
 			<div className={style.userWrapper}>
 				<UserInitial/>
 				<button onClick={authenticationStore?.singOut}>sing out</button>

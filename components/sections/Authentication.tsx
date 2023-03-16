@@ -5,6 +5,8 @@ import style from '@/styles/Login.module.scss'
 import AuthenticationLayout from '@/layout/AuthenticationLayout'
 import { useRouter } from 'next/router'
 import AuthenticationStore from '@/store/AuthenticationStore'
+import LocalUtils from '@/utils/LocalUtils'
+import Loader from '@/components/Loader'
 
 interface RegistrationProps {
 	authenticationStore?: AuthenticationStore
@@ -26,8 +28,8 @@ const Authentication: FC<RegistrationProps> = ({authenticationStore}) => {
 	}
 
 	const checkAuth = () => {
-		let token = localStorage.getItem('token')
-		if (token) {
+		LocalUtils.getToken()
+		if (LocalUtils.getToken()) {
 			router.replace('/')
 		}
 	}
@@ -35,7 +37,7 @@ const Authentication: FC<RegistrationProps> = ({authenticationStore}) => {
 
 	if (authenticationStore?.isLoading) {
 		return <AuthenticationLayout>
-			<h1>Загрузка</h1>
+			<Loader />
 		</AuthenticationLayout>
 	}
 
@@ -60,8 +62,9 @@ const Authentication: FC<RegistrationProps> = ({authenticationStore}) => {
 					onChange={authenticationStore?.changePassword}
 					value={authenticationStore?.password} type='password' placeholder='Enter password' />
 			</form>
-			<div className='flex justify-between'>
+			<div className={style.btnWrapper}>
 				<button onClick={handleSingUp}>Sing Up</button>
+				<div className={style.divider}>------------OR------------</div>
 				<button onClick={handleLogIn}>Sing In</button>
 			</div>
 		</div>

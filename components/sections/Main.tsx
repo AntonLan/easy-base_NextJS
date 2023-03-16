@@ -5,6 +5,7 @@ import InjectNames from '@/store/configuration/storeIdentifier'
 import UserStore from '@/store/UserStore'
 import AuthenticationStore from '@/store/AuthenticationStore'
 import Table from '@/components/table/Table'
+import LocalUtils from '@/utils/LocalUtils'
 
 interface MainProps {
 	userStore?: UserStore
@@ -18,8 +19,8 @@ const Main: FC<MainProps> = ({ userStore, authenticationStore }) => {
 
 	useEffect(() => {
 		checkAuth()
-		let id = localStorage.getItem('id')
-		let token = localStorage.getItem('token')
+		let id = LocalUtils.getUserId()
+		let token = LocalUtils.getToken()
 		if (id && token) {
 			userStore?.getUserData(id, token)
 		}
