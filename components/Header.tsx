@@ -15,12 +15,14 @@ interface HeaderProps {
 const Header: FC<HeaderProps> = ({ authenticationStore }) => {
 	return (
 		<div className={style.header}>
-			<Link href={'/'}>
+			<Link
+				as="style"
+				href={'/'}>
 				<Image
+					priority={true}
 					src={Logo}
 					alt='Easy Base Logo'
-					width={73.5}
-					height={41} />
+					width={74} />
 			</Link>
 			<div className={style.userWrapper}>
 				<UserInitial/>

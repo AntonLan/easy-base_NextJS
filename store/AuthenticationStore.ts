@@ -6,7 +6,7 @@ class AuthenticationStore {
 	userName: string = ''
 	password: string = ''
 	email: string = ''
-	isAuth: boolean = false
+	isAuth?: boolean = undefined
 	isLoading: boolean = false
 	error: string = ''
 
