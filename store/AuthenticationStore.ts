@@ -24,7 +24,7 @@ class AuthenticationStore {
 
 	changeEmail = (e: ChangeEvent<HTMLInputElement>) => {
 		runInAction(() => {
-			this.email = e.target.value
+			this.email = e.target.value.toLowerCase()
 		})
 	}
 
