@@ -1,0 +1,4 @@
+export enum ModalMode {
+	CREATE_ORDER,
+	CREATE_ORGANIZATION
+}

@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from 'react'
 import Head from 'next/head'
 import Header from '@/components/Header'
 import SideBar from '@/components/SideBar'
-import CreateOrganizationModal from '@/components/modal/CreateOrganizationModal'
+import CreateOrganizationModal from '@/components/modal/CreateModal'
 
 interface MainLayoutProps {
 	children: ReactNode
