@@ -38,14 +38,12 @@ const SingIn: FC<SingInProps> = ({ authenticationStore }) => {
 	}
 
 	if (authenticationStore?.isLoading) {
-		return <AuthenticationLayout>
-			<Loader />
-		</AuthenticationLayout>
+		return <Loader />
 	}
 
 
 	return (
-		<AuthenticationLayout>
+		<>
 			<div className={style.wrapper}>
 				<h1>Login</h1>
 				<form>
@@ -62,8 +60,9 @@ const SingIn: FC<SingInProps> = ({ authenticationStore }) => {
 					<button onClick={handleSingUp}>Sing up</button>
 				</div>
 			</div>
-			{authenticationStore?.error && <NotificationMessage message={authenticationStore?.error}/>}
-		</AuthenticationLayout>
+			{authenticationStore?.error && <NotificationMessage message={authenticationStore?.error} />}
+		</>
+
 	)
 }
 

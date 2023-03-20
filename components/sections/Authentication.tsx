@@ -13,7 +13,7 @@ interface RegistrationProps {
 	authenticationStore?: AuthenticationStore
 }
 
-const Authentication: FC<RegistrationProps> = ({authenticationStore}) => {
+const Authentication: FC<RegistrationProps> = ({ authenticationStore }) => {
 	const router = useRouter()
 
 	useEffect(() => {
@@ -37,33 +37,33 @@ const Authentication: FC<RegistrationProps> = ({authenticationStore}) => {
 
 
 	if (authenticationStore?.isLoading) {
-		return <AuthenticationLayout>
-			<Loader />
-		</AuthenticationLayout>
+		return <Loader />
 	}
 
 
 	return (
-		<div className={style.wrapper}>
-			<h1>Registration</h1>
-			<form>
-				<input
-					onChange={authenticationStore?.changeUserName}
-					value={authenticationStore?.userName} type='text' placeholder='Enter user name' />
-				<input
-					onChange={authenticationStore?.changeEmail}
-					value={authenticationStore?.email} type='email' placeholder='Enter email' />
-				<input
-					onChange={authenticationStore?.changePassword}
-					value={authenticationStore?.password} type='password' placeholder='Enter password' />
-			</form>
-			<div className={style.btnWrapper}>
-				<button onClick={handleSingUp}>Sing Up</button>
-				<div className={style.divider}>------------OR------------</div>
-				<button onClick={handleLogIn}>Sing In</button>
+		<>
+			<div className={style.wrapper}>
+				<h1>Registration</h1>
+				<form>
+					<input
+						onChange={authenticationStore?.changeUserName}
+						value={authenticationStore?.userName} type='text' placeholder='Enter user name' />
+					<input
+						onChange={authenticationStore?.changeEmail}
+						value={authenticationStore?.email} type='email' placeholder='Enter email' />
+					<input
+						onChange={authenticationStore?.changePassword}
+						value={authenticationStore?.password} type='password' placeholder='Enter password' />
+				</form>
+				<div className={style.btnWrapper}>
+					<button onClick={handleSingUp}>Sing Up</button>
+					<div className={style.divider}>------------OR------------</div>
+					<button onClick={handleLogIn}>Sing In</button>
+				</div>
 			</div>
-			{authenticationStore?.error && <NotificationMessage message={authenticationStore?.error}/>}
-		</div>
+			{authenticationStore?.error && <NotificationMessage message={authenticationStore?.error} />}
+		</>
 	)
 }
 
