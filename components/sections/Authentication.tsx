@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import AuthenticationStore from '@/store/AuthenticationStore'
 import LocalUtils from '@/utils/LocalUtils'
 import Loader from '@/components/Loader'
+import NotificationMessage from '@/components/NotificationMessage'
 
 interface RegistrationProps {
 	authenticationStore?: AuthenticationStore
@@ -41,12 +42,6 @@ const Authentication: FC<RegistrationProps> = ({authenticationStore}) => {
 		</AuthenticationLayout>
 	}
 
-	if (authenticationStore?.error) {
-		return <AuthenticationLayout>
-			<h1>{authenticationStore?.error}</h1>
-		</AuthenticationLayout>
-	}
-
 
 	return (
 		<div className={style.wrapper}>
@@ -67,6 +62,7 @@ const Authentication: FC<RegistrationProps> = ({authenticationStore}) => {
 				<div className={style.divider}>------------OR------------</div>
 				<button onClick={handleLogIn}>Sing In</button>
 			</div>
+			{authenticationStore?.error && <NotificationMessage message={authenticationStore?.error}/>}
 		</div>
 	)
 }

@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react'
+import React, { FC, useEffect } from 'react'
 import AuthenticationLayout from '@/layout/AuthenticationLayout'
 import style from '@/styles/Login.module.scss'
 import { useRouter } from 'next/router'
@@ -6,6 +6,7 @@ import AuthenticationStore from '@/store/AuthenticationStore'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import Loader from '@/components/Loader'
+import NotificationMessage from '@/components/NotificationMessage'
 
 interface SingInProps {
 	authenticationStore?: AuthenticationStore
@@ -42,11 +43,6 @@ const SingIn: FC<SingInProps> = ({ authenticationStore }) => {
 		</AuthenticationLayout>
 	}
 
-	if (authenticationStore?.error) {
-		return <AuthenticationLayout>
-			<h1>{authenticationStore?.error}</h1>
-		</AuthenticationLayout>
-	}
 
 	return (
 		<AuthenticationLayout>
@@ -66,6 +62,7 @@ const SingIn: FC<SingInProps> = ({ authenticationStore }) => {
 					<button onClick={handleSingUp}>Sing up</button>
 				</div>
 			</div>
+			{authenticationStore?.error && <NotificationMessage message={authenticationStore?.error}/>}
 		</AuthenticationLayout>
 	)
 }

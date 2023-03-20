@@ -60,7 +60,7 @@ class AuthenticationStore {
 			runInAction(() => {
 				this.password = ''
 				this.email = ''
-				this.error = e.message
+				this.error = e.request.statusText
 				this.isAuth = false
 				this.isLoading = false
 			})
