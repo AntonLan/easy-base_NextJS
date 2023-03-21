@@ -1,18 +1,26 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { OrderType } from '@/model/OrderType'
 import style from '@/styles/Table.module.scss'
 import { observer } from 'mobx-react'
-import Link from 'next/link'
+import DropRow from '@/components/DropRow'
+import moment from 'moment'
 
 interface TableRowProps {
 	order: OrderType
 }
 
 const TableRow: FC<TableRowProps> = ({order}) => {
+	const [isOpen, setIsOpen] = useState(false)
+
+
+	const handleOpen = () => {
+		setIsOpen(prev => !prev)
+	}
 
 	return (
+		<>
 		<tr className={style.tableRow}>
-			<th scope="row" className={style.cellProgress}>
+			<th scope='row' className={style.cellProgress}>
 				{order.progress}
 			</th>
 			<td>
@@ -22,12 +30,23 @@ const TableRow: FC<TableRowProps> = ({order}) => {
 				{order.orderType}
 			</td>
 			<td>
-				{order.createdAt}
+				{moment(order.createdAt).format('DD/MM/YYYY')}
 			</td>
 			<td>
-				<Link href="components#" className={style.edit}>Edit</Link>
+				<button type='button'
+								onClick={handleOpen}
+								className={style.edit}
+								id='menu-button' aria-expanded='true' aria-haspopup='true'>Edit
+				</button>
 			</td>
 		</tr>
+			{isOpen &&
+				<DropRow order={order}/>
+			}
+
+
+
+		</>
 	)
 }
 

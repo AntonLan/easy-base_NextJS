@@ -17,6 +17,7 @@ const Main: FC<MainProps> = ({ userStore, authenticationStore }) => {
 	const router = useRouter()
 
 
+
 	useEffect(() => {
 		checkAuth()
 		let id = LocalUtils.getUserId()
