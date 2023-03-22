@@ -33,7 +33,7 @@ class UserStore {
 		}
 	}
 
-	changeOrganizationHandler = (event: any) => {
+	changeHandler = (event: any) => {
 		this.organization = { ...this.organization, [event?.target.name]: event?.target.value }
 		this.order = { ...this.order, [event?.target.name]: event?.target.value }
 	}
@@ -72,6 +72,26 @@ class UserStore {
 		}
 	}
 
+	updateOrder = async (order: OrderType) => {
+		const reqBody = {
+			...order,
+			...this.order,
+			id: order?._id,
+			userId: this.user._id
+		}
+		let { id, userId, ...newOrder } = reqBody
+		let index = this.user.orders?.indexOf(order)
+		try {
+			const res = await UserService.updateOrder(reqBody)
+			runInAction(() => {
+				this.order = {}
+				this.user.orders?.splice(index!, 1, newOrder)
+			})
+		} catch (e) {
+			console.log(e)
+		}
+	}
+
 	changeMode = (mode: ModalMode) => {
 		runInAction(() => {
 			this.modalMode = mode
@@ -85,7 +105,6 @@ class UserStore {
 			this.organization = {}
 		})
 	}
-
 }
 
 export default UserStore

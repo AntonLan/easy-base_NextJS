@@ -22,6 +22,12 @@ class UserService {
 		const res = await axios.post(path, {...order, Headers: 'application/json'})
 		return res.data
 	}
+
+	static updateOrder = async (order: OrderType) => {
+		const path = 'http://localhost:5002/api/users/orders'
+		const res = await axios.put(path, {...order, Headers: 'application/json'})
+		return res.data
+	}
 }
 
 export default UserService

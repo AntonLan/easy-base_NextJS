@@ -37,8 +37,9 @@
           }
         }
 
+
         td {
-          @apply px-6 py-4;
+          @apply px-6 py-4 w-[200px] max-w-[200px] min-w-[200px];
 
           .edit {
             @apply font-medium text-primary dark:text-blue-500 hover:underline;
@@ -46,7 +47,15 @@
         }
 
         .cellProgress {
-          @apply px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white;
+          @apply px-[1.2rem] py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white;
+        }
+
+        input {
+          @apply bg-light-gray focus:outline-none;
+        }
+
+        select {
+          @apply m-0 p-0 bg-light-gray focus:outline-none;
         }
       }
 
@@ -54,7 +63,7 @@
       @apply bg-white border-b dark:bg-gray-800 dark:border-gray-700;
 
       td {
-        @apply px-6 py-4;
+        @apply px-6 py-4 w-[200px];
 
         .edit {
           @apply font-medium text-primary dark:text-blue-500 hover:underline;

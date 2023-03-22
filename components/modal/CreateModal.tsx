@@ -30,7 +30,7 @@ const CreateModal: FC<ModalProps> = ({ userStore }) => {
 								className={style.formWrapper}>
 								{userStore.modalMode === ModalMode.CREATE_ORDER &&
 									<>
-										<FormOrder handleChange={userStore.changeOrganizationHandler} order={userStore.organization} />
+										<FormOrder handleChange={userStore.changeHandler} order={userStore.organization} />
 										<div className={style.btnContainer}>
 											<button onClick={userStore.createOrder}>
 												Create Order
@@ -43,7 +43,7 @@ const CreateModal: FC<ModalProps> = ({ userStore }) => {
 								}
 								{userStore.modalMode === ModalMode.CREATE_ORGANIZATION &&
 									<>
-									<FormOrganization handleChange={userStore.changeOrganizationHandler}
+									<FormOrganization handleChange={userStore.changeHandler}
 																		organization={userStore.organization} />
 										<div className={style.btnContainer}>
 											<button onClick={userStore.createOrganization}>

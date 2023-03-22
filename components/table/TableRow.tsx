@@ -2,7 +2,7 @@ import { FC, useState } from 'react'
 import { OrderType } from '@/model/OrderType'
 import style from '@/styles/Table.module.scss'
 import { observer } from 'mobx-react'
-import DropRow from '@/components/DropRow'
+import DropRow from '@/components/table/DropRow'
 import moment from 'moment'
 
 interface TableRowProps {
@@ -20,9 +20,9 @@ const TableRow: FC<TableRowProps> = ({order}) => {
 	return (
 		<>
 		<tr className={style.tableRow}>
-			<th scope='row' className={style.cellProgress}>
+			<td scope='row' className={style.cellProgress}>
 				{order.progress}
-			</th>
+			</td>
 			<td>
 				{order.client}
 			</td>
@@ -41,7 +41,7 @@ const TableRow: FC<TableRowProps> = ({order}) => {
 			</td>
 		</tr>
 			{isOpen &&
-				<DropRow order={order}/>
+				<DropRow order={order} isOpen={handleOpen}/>
 			}
 
 

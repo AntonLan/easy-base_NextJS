@@ -25,7 +25,7 @@
         }
 
         .navigationActive {
-          @apply flex items-center p-2 text-base font-normal text-main rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700;
+          @apply flex items-center p-2 text-base font-bold text-main rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700;
 
 
           span {
