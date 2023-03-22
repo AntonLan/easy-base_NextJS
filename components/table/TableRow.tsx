@@ -6,8 +6,6 @@ import DropRow from '@/components/table/DropRow'
 import moment from 'moment'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import UserStore from '@/store/UserStore'
-import userStore from '@/store/UserStore'
-import DeleteModal from '@/components/modal/DeleteModal'
 
 interface TableRowProps {
 	userStore?: UserStore
@@ -24,39 +22,39 @@ const TableRow: FC<TableRowProps> = ({ order, userStore }) => {
 
 
 	return (
-		<tr className={style.tableRow}>
-			<td scope='row' className={style.cellProgress}>
-				{order.progress}
-			</td>
-			<td>
-				{order.client}
-			</td>
-			<td>
-				{order.orderType}
-			</td>
-			<td>
-				{moment(order.createdAt).format('DD/MM/YYYY')}
-			</td>
-			<td>
-				<button type='button'
-								onClick={handleOpen}
-								className={style.edit}
-								id='menu-button' aria-expanded='true' aria-haspopup='true'>Edit
-				</button>
-			</td>
-			<td>
-				<button type='button'
-								onClick={() => userStore?.openDeleteModal(order)}
-								className={style.delete}
-								id='menu-button' aria-expanded='true' aria-haspopup='true'>Delete
-				</button>
-			</td>
+		<>
+			<tr className={style.tableRow}>
+				<td scope='row' className={style.cellProgress}>
+					{order.progress}
+				</td>
+				<td>
+					{order.client}
+				</td>
+				<td>
+					{order.orderType}
+				</td>
+				<td>
+					{moment(order.createdAt).format('DD/MM/YYYY')}
+				</td>
+				<td>
+					<button type='button'
+									onClick={handleOpen}
+									className={style.edit}
+									id='menu-button' aria-expanded='true' aria-haspopup='true'>Edit
+					</button>
+				</td>
+				<td>
+					<button type='button'
+									onClick={() => userStore?.openDeleteModal(order)}
+									className={style.delete}
+									id='menu-button' aria-expanded='true' aria-haspopup='true'>Delete
+					</button>
+				</td>
+			</tr>
 			{isOpen &&
 				<DropRow order={order} isOpen={handleOpen} />
 			}
-
-		</tr>
-
+		</>
 	)
 }
 

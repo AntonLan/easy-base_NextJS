@@ -85,7 +85,7 @@ class UserStore {
 		let { id, userId, ...newOrder } = reqBody
 		let index = this.user.orders?.indexOf(order)
 		try {
-			const res = await UserService.updateOrder(reqBody)
+			await UserService.updateOrder(reqBody)
 			runInAction(() => {
 				this.order = {}
 				this.user.orders?.splice(index!, 1, newOrder)
@@ -104,7 +104,7 @@ class UserStore {
 		}
 		let index = this.user.orders?.indexOf(this.order)
 		try {
-			const res = await UserService.deleteOrder(reqBody)
+			await UserService.deleteOrder(reqBody)
 			runInAction(() => {
 				this.user.orders?.splice(index!, 1)
 				this.isOpenDeleteModal = !this.isOpenDeleteModal

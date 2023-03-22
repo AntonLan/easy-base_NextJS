@@ -3,7 +3,6 @@ import UserStore from '@/store/UserStore'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import style from '@/styles/Organizations.module.scss'
-import { OrderType } from '@/model/OrderType'
 
 interface DeleteModalProps {
 	userStore?: UserStore
