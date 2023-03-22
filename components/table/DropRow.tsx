@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import style from '@/styles/Table.module.scss'
 import { OrderType } from '@/model/OrderType'
 import moment from 'moment/moment'
@@ -13,7 +13,7 @@ interface DropRowProps {
 	isOpen: () => void
 }
 
-const DropRow: FC<DropRowProps> = ({order, isOpen, userStore}) => {
+const DropRow: FC<DropRowProps> = ({ order, isOpen, userStore }) => {
 
 	const handleUpdate = () => {
 		userStore?.updateOrder(order)
@@ -23,7 +23,8 @@ const DropRow: FC<DropRowProps> = ({order, isOpen, userStore}) => {
 	return (
 		<tr className={style.dropRow} tabIndex={-1}>
 			<td scope='row' className={style.cellProgress}>
-				<OrderProgress defaultValue={order.progress} value={userStore?.order.progress} changeProgress={userStore?.changeHandler}/>
+				<OrderProgress defaultValue={order.progress} value={userStore?.order.progress}
+											 changeProgress={userStore?.changeHandler} />
 			</td>
 			<td>
 				<input
@@ -49,8 +50,10 @@ const DropRow: FC<DropRowProps> = ({order, isOpen, userStore}) => {
 					onClick={handleUpdate}
 					type='button'
 					className={style.edit}>
-					Edit
-			</button>
+					Update
+				</button>
+			</td>
+			<td>
 			</td>
 		</tr>
 	)

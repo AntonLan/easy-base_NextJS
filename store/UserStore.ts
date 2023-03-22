@@ -11,13 +11,16 @@ class UserStore {
 	modalMode: ModalMode = ModalMode.CREATE_ORDER
 	organization: OrganizationType = {}
 	order: OrderType = {}
-	isOpen: boolean = false
+	isOpenCreateModal: boolean = false
+	isOpenDeleteModal: boolean = false
 
 	constructor() {
 		makeObservable(this, {
 			user: observable,
+			order: observable,
 			modalMode: observable,
-			isOpen: observable
+			isOpenCreateModal: observable,
+			isOpenDeleteModal: observable
 		})
 	}
 
@@ -47,7 +50,7 @@ class UserStore {
 			const res = await UserService.createOrganization(reqBody)
 			runInAction(() => {
 				this.user.organizations?.push(res)
-				this.isOpen = !this.isOpen
+				this.isOpenCreateModal = !this.isOpenCreateModal
 				this.organization = {}
 			})
 		} catch (e) {
@@ -64,7 +67,7 @@ class UserStore {
 			const res = await UserService.createOrder(reqBody)
 			runInAction(() => {
 				this.user.orders?.push(res)
-				this.isOpen = !this.isOpen
+				this.isOpenCreateModal = !this.isOpenCreateModal
 				this.order = {}
 			})
 		} catch (e) {
@@ -92,6 +95,25 @@ class UserStore {
 		}
 	}
 
+
+	deleteOrder = async (order: OrderType) => {
+		const reqBody = {
+			...order,
+			id: this.order?._id,
+			userId: this.user._id
+		}
+		let index = this.user.orders?.indexOf(order)
+		try {
+			const res = await UserService.deleteOrder(reqBody)
+			runInAction(() => {
+				this.user.orders?.splice(index!, 1)
+				this.isOpenDeleteModal = !this.isOpenDeleteModal
+			})
+		} catch (e) {
+			console.log(e)
+		}
+	}
+
 	changeMode = (mode: ModalMode) => {
 		runInAction(() => {
 			this.modalMode = mode
@@ -100,11 +122,18 @@ class UserStore {
 
 	openModal = () => {
 		runInAction(() => {
-			this.isOpen = !this.isOpen
+			this.isOpenCreateModal = !this.isOpenCreateModal
 			this.order = {}
 			this.organization = {}
 		})
 	}
+
+	openDeleteModal = () => {
+		runInAction(() => {
+			this.isOpenDeleteModal = !this.isOpenDeleteModal
+		})
+	}
+
 }
 
 export default UserStore

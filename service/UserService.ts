@@ -28,6 +28,13 @@ class UserService {
 		const res = await axios.put(path, {...order, Headers: 'application/json'})
 		return res.data
 	}
+
+	static deleteOrder = async (order: OrderType) => {
+		const path = 'http://localhost:5002/api/users/orders'
+		const res = await axios.delete(path, { data: { ...order } })
+		return res.data
+	}
+
 }
 
 export default UserService

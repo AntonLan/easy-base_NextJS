@@ -66,7 +66,11 @@
         @apply px-6 py-4 w-[200px];
 
         .edit {
-          @apply font-medium text-primary dark:text-blue-500 hover:underline;
+          @apply font-medium text-primary hover:underline;
+        }
+
+        .delete {
+          @apply w-[50px] font-medium text-red-900 hover:underline;
         }
       }
 

@@ -16,12 +16,9 @@ const CreateModal: FC<ModalProps> = ({ userStore }) => {
 
 	return (
 		<>
-			{userStore?.isOpen &&
+			{userStore?.isOpenCreateModal &&
 				<div onClick={userStore?.openModal}
-						 className={style.modalContainer}
-						 aria-labelledby='modal-title'
-						 role='dialog'
-						 aria-modal='true'>
+						 className={style.modalContainer}>
 					<div className={style.bgModal}></div>
 					<div className={style.modalWrapper}>
 						<div className={style.modalPosition}>
@@ -55,7 +52,6 @@ const CreateModal: FC<ModalProps> = ({ userStore }) => {
 										</div>
 									</>
 								}
-
 							</div>
 						</div>
 					</div>

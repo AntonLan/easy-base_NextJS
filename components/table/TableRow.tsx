@@ -1,15 +1,20 @@
-import { FC, useState } from 'react'
+import React, { FC, useState } from 'react'
 import { OrderType } from '@/model/OrderType'
 import style from '@/styles/Table.module.scss'
-import { observer } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 import DropRow from '@/components/table/DropRow'
 import moment from 'moment'
+import InjectNames from '@/store/configuration/storeIdentifier'
+import UserStore from '@/store/UserStore'
+import userStore from '@/store/UserStore'
+import DeleteModal from '@/components/modal/DeleteModal'
 
 interface TableRowProps {
+	userStore?: UserStore
 	order: OrderType
 }
 
-const TableRow: FC<TableRowProps> = ({order}) => {
+const TableRow: FC<TableRowProps> = ({ order, userStore }) => {
 	const [isOpen, setIsOpen] = useState(false)
 
 
@@ -17,8 +22,8 @@ const TableRow: FC<TableRowProps> = ({order}) => {
 		setIsOpen(prev => !prev)
 	}
 
+
 	return (
-		<>
 		<tr className={style.tableRow}>
 			<td scope='row' className={style.cellProgress}>
 				{order.progress}
@@ -39,15 +44,20 @@ const TableRow: FC<TableRowProps> = ({order}) => {
 								id='menu-button' aria-expanded='true' aria-haspopup='true'>Edit
 				</button>
 			</td>
-		</tr>
+			<td>
+				<button type='button'
+								onClick={userStore?.openDeleteModal}
+								className={style.delete}
+								id='menu-button' aria-expanded='true' aria-haspopup='true'>Delete
+				</button>
+			</td>
 			{isOpen &&
-				<DropRow order={order} isOpen={handleOpen}/>
+				<DropRow order={order} isOpen={handleOpen} />
 			}
+			<DeleteModal order={order} />
+		</tr>
 
-
-
-		</>
 	)
 }
 
-export default observer(TableRow)
+export default inject(InjectNames.UserStore)(observer(TableRow))

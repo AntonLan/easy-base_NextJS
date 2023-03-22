@@ -35,7 +35,10 @@ const TableHead: FC = () => {
 				</div>
 			</th>
 			<th scope='col'>
-				<span>Edit</span>
+				Edit Order
+			</th>
+			<th scope='col'>
+				<span>Delete</span>
 			</th>
 		</tr>
 		</thead>
