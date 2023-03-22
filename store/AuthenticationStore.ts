@@ -81,6 +81,7 @@ class AuthenticationStore {
 				this.userName = ''
 				this.password = ''
 				this.email = ''
+				this.isAuth = true
 				this.isLoading = false
 			})
 		} catch (e: any) {
@@ -88,7 +89,8 @@ class AuthenticationStore {
 				this.userName = ''
 				this.password = ''
 				this.email = ''
-				this.error = e.message
+				this.isAuth = false
+				this.error = e.request.statusText
 				this.isLoading = false
 			})
 

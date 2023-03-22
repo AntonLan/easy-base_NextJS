@@ -18,6 +18,7 @@ class UserStore {
 		makeObservable(this, {
 			user: observable,
 			order: observable,
+			organization: observable,
 			modalMode: observable,
 			isOpenCreateModal: observable,
 			isOpenDeleteModal: observable

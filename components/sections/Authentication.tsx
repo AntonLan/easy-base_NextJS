@@ -29,7 +29,6 @@ const Authentication: FC<RegistrationProps> = ({ authenticationStore }) => {
 	}
 
 	const checkAuth = () => {
-		LocalUtils.getToken()
 		if (LocalUtils.getToken()) {
 			router.replace('/')
 		}

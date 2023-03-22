@@ -7,6 +7,7 @@ import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import Loader from '@/components/Loader'
 import NotificationMessage from '@/components/NotificationMessage'
+import LocalUtils from '@/utils/LocalUtils'
 
 interface SingInProps {
 	authenticationStore?: AuthenticationStore
@@ -31,8 +32,8 @@ const SingIn: FC<SingInProps> = ({ authenticationStore }) => {
 	}
 
 	const checkAuth = () => {
-		let token = localStorage.getItem('token')
-		if (token) {
+
+		if (LocalUtils.getToken()) {
 			router.replace('/')
 		}
 	}
