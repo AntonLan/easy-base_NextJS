@@ -7,19 +7,18 @@ import { OrderType } from '@/model/OrderType'
 
 interface DeleteModalProps {
 	userStore?: UserStore
-	order: OrderType
 }
 
-const DeleteModal: FC<DeleteModalProps> = ({ userStore, order}) => {
+const DeleteModal: FC<DeleteModalProps> = ({ userStore}) => {
 
 		const handleDelete = () => {
-			userStore?.deleteOrder(order)
+			userStore?.deleteOrder()
 		}
 
 		return (
 			<>
 				{userStore?.isOpenDeleteModal &&
-					<div onClick={userStore?.openDeleteModal}
+					<div onClick={userStore?.handleClose}
 							 className={style.modalContainer}>
 						<div className={style.bgModal}></div>
 						<div className={style.modalWrapper}>
@@ -33,7 +32,7 @@ const DeleteModal: FC<DeleteModalProps> = ({ userStore, order}) => {
 											Delete Order
 										</button>
 										<button className={style.btnCancel}
-														onClick={userStore?.openDeleteModal}>Cancel
+														onClick={userStore?.handleClose}>Cancel
 										</button>
 									</div>
 								</div>

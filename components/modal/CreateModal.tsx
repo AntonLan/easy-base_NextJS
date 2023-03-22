@@ -17,7 +17,7 @@ const CreateModal: FC<ModalProps> = ({ userStore }) => {
 	return (
 		<>
 			{userStore?.isOpenCreateModal &&
-				<div onClick={userStore?.openModal}
+				<div onClick={userStore?.handleClose}
 						 className={style.modalContainer}>
 					<div className={style.bgModal}></div>
 					<div className={style.modalWrapper}>
@@ -33,7 +33,7 @@ const CreateModal: FC<ModalProps> = ({ userStore }) => {
 												Create Order
 											</button>
 											<button className={style.btnCancel}
-															onClick={userStore?.openModal}>Cancel
+															onClick={userStore?.handleClose}>Cancel
 											</button>
 										</div>
 									</>
@@ -47,7 +47,7 @@ const CreateModal: FC<ModalProps> = ({ userStore }) => {
 												Create Organization
 											</button>
 											<button className={style.btnCancel}
-															onClick={userStore?.openModal}>Cancel
+															onClick={userStore?.handleClose}>Cancel
 											</button>
 										</div>
 									</>

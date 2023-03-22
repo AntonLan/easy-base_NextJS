@@ -46,7 +46,7 @@ const TableRow: FC<TableRowProps> = ({ order, userStore }) => {
 			</td>
 			<td>
 				<button type='button'
-								onClick={userStore?.openDeleteModal}
+								onClick={() => userStore?.openDeleteModal(order)}
 								className={style.delete}
 								id='menu-button' aria-expanded='true' aria-haspopup='true'>Delete
 				</button>
@@ -54,7 +54,7 @@ const TableRow: FC<TableRowProps> = ({ order, userStore }) => {
 			{isOpen &&
 				<DropRow order={order} isOpen={handleOpen} />
 			}
-			<DeleteModal order={order} />
+
 		</tr>
 
 	)

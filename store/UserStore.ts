@@ -96,13 +96,13 @@ class UserStore {
 	}
 
 
-	deleteOrder = async (order: OrderType) => {
+	deleteOrder = async () => {
 		const reqBody = {
-			...order,
+			...this.order,
 			id: this.order?._id,
 			userId: this.user._id
 		}
-		let index = this.user.orders?.indexOf(order)
+		let index = this.user.orders?.indexOf(this.order)
 		try {
 			const res = await UserService.deleteOrder(reqBody)
 			runInAction(() => {
@@ -122,15 +122,25 @@ class UserStore {
 
 	openModal = () => {
 		runInAction(() => {
-			this.isOpenCreateModal = !this.isOpenCreateModal
+			this.isOpenCreateModal = true
 			this.order = {}
 			this.organization = {}
 		})
 	}
 
-	openDeleteModal = () => {
+	openDeleteModal = (order: OrderType) => {
 		runInAction(() => {
-			this.isOpenDeleteModal = !this.isOpenDeleteModal
+			this.order = order
+			this.isOpenDeleteModal = true
+		})
+	}
+
+	handleClose = () => {
+		runInAction(() => {
+			this.isOpenCreateModal = false
+			this.isOpenDeleteModal = false
+			this.order = {}
+			this.organization = {}
 		})
 	}
 
