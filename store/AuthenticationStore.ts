@@ -1,12 +1,12 @@
 import AuthenticationService from '@/service/AuthenticationService'
-import { makeObservable, observable } from 'mobx'
+import { makeObservable, observable, runInAction } from 'mobx'
 import { ChangeEvent } from 'react'
 
 class AuthenticationStore {
 	userName: string = ''
 	password: string = ''
 	email: string = ''
-	isAuth: boolean = false
+	isAuth?: boolean = undefined
 	isLoading: boolean = false
 	error: string = ''
 
@@ -23,65 +23,85 @@ class AuthenticationStore {
 	}
 
 	changeEmail = (e: ChangeEvent<HTMLInputElement>) => {
-		this.email = e.target.value
+		runInAction(() => {
+			this.email = e.target.value.toLowerCase()
+		})
 	}
 
 	changePassword = (e: ChangeEvent<HTMLInputElement>) => {
-		this.password = e.target.value
+		runInAction(() => {
+			this.password = e.target.value
+		})
 	}
 
 	changeUserName = (e: ChangeEvent<HTMLInputElement>) => {
-		this.userName = e.target.value
+		runInAction(() => {
+			this.userName = e.target.value
+		})
 	}
 
 	singIn = async () => {
 		if (this.email.length === 0 || this.password.length === 0) return
 		try {
-			this.isLoading = true
-			this.error = ''
+			runInAction(() => {
+				this.isLoading = true
+				this.error = ''
+			})
 			const res = await AuthenticationService.singIn(this.email, this.password)
 			localStorage.setItem('id', res.user._id)
 			localStorage.setItem('token', res.accessToken)
-			this.password = ''
-			this.email = ''
-			this.isAuth = true
-			this.isLoading = false
+			runInAction(() => {
+				this.password = ''
+				this.email = ''
+				this.isAuth = true
+				this.isLoading = false
+			})
 		} catch (e: any) {
-			this.password = ''
-			this.email = ''
-			this.error = e.message
-			this.isAuth = false
-			this.isLoading = false
+			runInAction(() => {
+				this.password = ''
+				this.email = ''
+				this.error = e.request.statusText
+				this.isAuth = false
+				this.isLoading = false
+			})
 		}
 	}
 
 	singUp = async () => {
 		if (this.email.length === 0 || this.password.length === 0 || this.userName.length === 0) return
 		try {
-			this.isLoading = true
-			this.error = ''
+			runInAction(() => {
+				this.isLoading = true
+				this.error = ''
+			})
 			const res = await AuthenticationService.singUp(this.userName, this.email, this.password)
 			localStorage.setItem('id', res.user._id)
 			localStorage.setItem('token', res.accessToken)
-			this.userName = ''
-			this.password = ''
-			this.email = ''
-			this.isLoading = false
+			runInAction(() => {
+				this.userName = ''
+				this.password = ''
+				this.email = ''
+				this.isAuth = true
+				this.isLoading = false
+			})
 		} catch (e: any) {
-
-			this.userName = ''
-			this.password = ''
-			this.email = ''
-			this.error = e.message
-			this.isLoading = false
+			runInAction(() => {
+				this.userName = ''
+				this.password = ''
+				this.email = ''
+				this.isAuth = false
+				this.error = e.request.statusText
+				this.isLoading = false
+			})
 
 		}
 	}
 
 	singOut = () => {
-		this.isAuth = false
+		runInAction(() => {
+			this.isAuth = false
+		})
 		localStorage.clear()
-		console.log("check",this.isAuth)
 	}
 }
 

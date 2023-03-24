@@ -1,5 +1,6 @@
 .wrapper {
-  @apply flex flex-col justify-around w-[400px] h-[400px] gap-6 rounded p-10 shadow-xl object-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  @apply flex flex-col bg-light-gray justify-around w-[400px] h-[400px] gap-6 rounded-md p-10 shadow-xl object-center
+  absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
 
   h1 {
     @apply text-2xl text-center;
@@ -13,10 +14,18 @@
     }
   }
 
-  button {
-    @apply bg-blue-600 text-white rounded w-[150px] p-2 mx-auto hover:bg-blue-700 transition;
+
+  .btnWrapper {
+    @apply flex flex-col pb-[20px]
   }
 
+  .divider {
+    @apply text-center p-2 text-sm text-gray-400
+  }
+
+  button {
+    @apply bg-primary text-white rounded w-full p-2 mx-auto hover:bg-main transition;
+  }
 
 
 }

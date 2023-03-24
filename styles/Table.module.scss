@@ -1,0 +1,83 @@
+.tableContainer {
+  @apply relative overflow-x-auto w-[100%] h-[calc(100vh-81px)] mx-auto mt-5 border-2 rounded-tl-md rounded-bl-md shadow-md;
+
+  .table {
+    @apply w-full text-sm text-left text-gray-500 dark:text-gray-400;
+
+
+    .tableHead {
+      @apply text-xs text-main uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400;
+
+      th {
+        @apply px-6 py-3;
+
+        div {
+          @apply flex items-center;
+        }
+
+        span {
+          @apply sr-only;
+        }
+      }
+    }
+      .dropRow {
+        @apply bg-light-gray border-b border-2 shadow-inner;
+        animation: growOut 450ms ease-in-out forwards;
+        transform-origin: top center;
+
+        @keyframes growOut {
+          0% {
+            transform: scaleY(0)
+          }
+          80% {
+            transform: scaleY(1.1)
+          }
+          100% {
+            transform: scaleY(1)
+          }
+        }
+
+
+        td {
+          @apply px-6 py-4 w-[200px] max-w-[200px] min-w-[200px];
+
+          .edit {
+            @apply font-medium text-primary dark:text-blue-500 hover:underline;
+          }
+        }
+
+        .cellProgress {
+          @apply px-[1.2rem] py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white;
+        }
+
+        input {
+          @apply bg-light-gray focus:outline-none;
+        }
+
+        select {
+          @apply m-0 p-0 bg-light-gray focus:outline-none;
+        }
+      }
+
+    .tableRow {
+      @apply bg-white border-b dark:bg-gray-800 dark:border-gray-700;
+
+      td {
+        @apply px-6 py-4 w-[200px];
+
+        .edit {
+          @apply font-medium text-primary hover:underline;
+        }
+
+        .delete {
+          @apply w-[50px] font-medium text-red-900 hover:underline;
+        }
+      }
+
+      .cellProgress {
+        @apply px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white;
+      }
+    }
+  }
+}
+

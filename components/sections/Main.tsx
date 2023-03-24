@@ -1,11 +1,11 @@
 import React, { FC, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import MainLayout from '@/layout/MainLayout'
-import ToggleDarkMode from '@/components/ToggleDarkMode'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import UserStore from '@/store/UserStore'
 import AuthenticationStore from '@/store/AuthenticationStore'
+import Table from '@/components/table/Table'
+import LocalUtils from '@/utils/LocalUtils'
 
 interface MainProps {
 	userStore?: UserStore
@@ -13,14 +13,15 @@ interface MainProps {
 }
 
 
-const Main: FC<MainProps> = ({userStore, authenticationStore}) => {
+const Main: FC<MainProps> = ({ userStore, authenticationStore }) => {
 	const router = useRouter()
+
 
 
 	useEffect(() => {
 		checkAuth()
-		const id = localStorage.getItem('id')
-		const token = localStorage.getItem('token')
+		let id = LocalUtils.getUserId()
+		let token = LocalUtils.getToken()
 		if (id && token) {
 			userStore?.getUserData(id, token)
 		}
@@ -29,17 +30,14 @@ const Main: FC<MainProps> = ({userStore, authenticationStore}) => {
 	const checkAuth = () => {
 		let token = localStorage.getItem('token')
 		if (!token) {
-			router.push('/login')
+			router.replace('/login')
 		}
 	}
 
 	return (
-		<MainLayout>
-			<div className='bg-amber-400 dark:bg-black w-[200px] h-[200px]'>
-				{/*<ToggleDarkMode />*/}
-				<button onClick={authenticationStore?.singOut}>sing out</button>
-			</div>
-		</MainLayout>
+		<>
+			<Table/>
+		</>
 	)
 }
 
