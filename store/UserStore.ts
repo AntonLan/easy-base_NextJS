@@ -40,8 +40,10 @@ class UserStore {
 	}
 
 	changeHandler = (event: any) => {
-		this.organization = { ...this.organization, [event?.target.name]: event?.target.value }
-		this.order = { ...this.order, [event?.target.name]: event?.target.value }
+		runInAction(() => {
+			this.organization = { ...this.organization, [event?.target.name]: event?.target.value }
+			this.order = { ...this.order, [event?.target.name]: event?.target.value }
+		})
 	}
 
 	createOrganization = async () => {
@@ -92,7 +94,7 @@ class UserStore {
 		try {
 			const res = await UserService.createOrder(reqBody)
 			runInAction(() => {
-				this.user.orders?.push(res)
+				this.user.orders?.push({ ...res, isSelected: false })
 				this.isOpenCreateModal = !this.isOpenCreateModal
 				this.order = {}
 			})
@@ -102,6 +104,9 @@ class UserStore {
 	}
 
 	updateOrder = async (order: OrderType) => {
+		runInAction(() => {
+			this.user.orders?.map(order => order.isSelected = false)
+		})
 		const reqBody = {
 			...order,
 			...this.order,
@@ -161,10 +166,18 @@ class UserStore {
 		})
 	}
 
-	openUpdateModal(organization: OrganizationType) {
+	openUpdateModal = (organization: OrganizationType) => {
 		runInAction(() => {
 			this.organization = organization
 			this.isOpenUpdateModal = true
+		})
+	}
+
+	handleOpen = (id?: string) => {
+		runInAction(() => {
+			this.user.orders?.map(order => {
+				order.isSelected = order._id === id
+			})
 		})
 	}
 
@@ -173,6 +186,7 @@ class UserStore {
 			this.isOpenCreateModal = false
 			this.isOpenDeleteModal = false
 			this.isOpenUpdateModal = false
+			this.user.orders?.map(order => order.isSelected = false)
 			this.order = {}
 			this.organization = {}
 		})

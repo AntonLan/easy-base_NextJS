@@ -22,7 +22,7 @@ const FormOrderModalContent: FC<FormOrderProps> =
 					<input
 						name='client'
 						onChange={handleChange}
-						value={order.client}
+						value={order.client || ''}
 						id='client' type='text' placeholder='Client' />
 				</div>
 				<div>
@@ -30,7 +30,7 @@ const FormOrderModalContent: FC<FormOrderProps> =
 					<input
 						name='orderType'
 						onChange={handleChange}
-						value={order.orderType}
+						value={order.orderType || ''}
 						id='orderType' type='text' placeholder='Order Type' />
 				</div>
 			</form>

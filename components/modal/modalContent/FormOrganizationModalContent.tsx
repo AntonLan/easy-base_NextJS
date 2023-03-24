@@ -30,7 +30,7 @@ const FormOrganizationModalContent: FC<FormOrganizationProps> =
 						<input
 							name='name'
 							onChange={handleChange}
-							value={organization.name}
+							value={organization.name || ''}
 							id='name' type='text' placeholder='Name' />
 					</div>
 					<div>
@@ -38,7 +38,7 @@ const FormOrganizationModalContent: FC<FormOrganizationProps> =
 						<input
 							name='email'
 							onChange={handleChange}
-							value={organization.email}
+							value={organization.email || ''}
 							id='email' type='text' placeholder='Email' />
 					</div>
 					<div>
@@ -46,7 +46,7 @@ const FormOrganizationModalContent: FC<FormOrganizationProps> =
 						<input
 							name='phone'
 							onChange={handleChange}
-							value={organization.phone}
+							value={organization.phone || ''}
 							id='phone' type='text' placeholder='Phone' />
 					</div>
 					<div>
@@ -54,7 +54,7 @@ const FormOrganizationModalContent: FC<FormOrganizationProps> =
 						<input
 							name='formOrganization'
 							onChange={handleChange}
-							value={organization.formOrganization}
+							value={organization.formOrganization || ''}
 							id='formOrganization' type='text' placeholder='Form Organization' />
 					</div>
 					<div>
@@ -62,7 +62,7 @@ const FormOrganizationModalContent: FC<FormOrganizationProps> =
 						<input
 							name='character'
 							onChange={handleChange}
-							value={organization.character}
+							value={organization.character || ''}
 							id='character' type='text' placeholder='Character' />
 					</div>
 				</form>

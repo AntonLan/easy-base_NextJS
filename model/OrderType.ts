@@ -5,6 +5,7 @@ export type OrderType = {
 	progress?: ProgressEnum,
 	client?: string,
 	orderType?: string,
+	isSelected?: boolean
 	createdAt?: string,
 	updatedAt?: string,
 }

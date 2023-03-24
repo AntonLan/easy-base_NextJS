@@ -13,12 +13,6 @@ interface TableRowProps {
 }
 
 const TableRow: FC<TableRowProps> = ({ order, userStore }) => {
-	const [isOpen, setIsOpen] = useState(false)
-
-
-	const handleOpen = () => {
-		setIsOpen(prev => !prev)
-	}
 
 
 	return (
@@ -30,7 +24,7 @@ const TableRow: FC<TableRowProps> = ({ order, userStore }) => {
 				<td>{moment(order.createdAt).format('DD/MM/YYYY')}</td>
 				<td>
 					<button type='button'
-									onClick={handleOpen}
+									onClick={() => userStore?.handleOpen(order._id)}
 									className={style.edit}
 									id='menu-button' aria-expanded='true' aria-haspopup='true'>Edit
 					</button>
@@ -43,8 +37,8 @@ const TableRow: FC<TableRowProps> = ({ order, userStore }) => {
 					</button>
 				</td>
 			</tr>
-			{isOpen &&
-				<DropRow order={order} isOpen={handleOpen} />
+			{order.isSelected &&
+				<DropRow order={order} isOpen={userStore?.handleOpen!} />
 			}
 		</>
 	)

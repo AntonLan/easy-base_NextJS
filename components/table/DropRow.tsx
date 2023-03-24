@@ -10,7 +10,7 @@ import OrderProgress from '@/components/OrderProgress'
 interface DropRowProps {
 	order: OrderType
 	userStore?: UserStore
-	isOpen: () => void
+	isOpen: (id?: string) => void
 }
 
 const DropRow: FC<DropRowProps> = ({ order, isOpen, userStore }) => {
@@ -29,18 +29,18 @@ const DropRow: FC<DropRowProps> = ({ order, isOpen, userStore }) => {
 			<td>
 				<input
 					name='client'
-					value={userStore?.order.client}
+					value={userStore?.order.client || order.client}
 					type='text'
-					defaultValue={order.client}
+
 					onChange={userStore?.changeHandler}
 				/>
 			</td>
 			<td>
 				<input
 					name='orderType'
-					value={userStore?.order.orderType}
+					value={userStore?.order.orderType || order.orderType}
 					type='text'
-					defaultValue={order.orderType}
+
 					onChange={userStore?.changeHandler}
 				/>
 			</td>
@@ -54,6 +54,12 @@ const DropRow: FC<DropRowProps> = ({ order, isOpen, userStore }) => {
 				</button>
 			</td>
 			<td>
+				<button
+					onClick={userStore?.handleClose}
+					type='button'
+					className={style.delete}>
+					Cancel
+				</button>
 			</td>
 		</tr>
 	)
