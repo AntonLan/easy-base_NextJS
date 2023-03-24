@@ -1,19 +1,13 @@
 import React, { FC } from 'react'
-import UserStore from '@/store/UserStore'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
-import style from '@/styles/Organizations.module.scss'
-import FormOrganization from '@/components/FormOrganization'
-import FormOrder from '@/components/FormOrder'
+import style from '@/styles/Modal.module.scss'
+import FormOrganizationModalContent from '@/components/modal/modalContent/FormOrganizationModalContent'
+import FormOrderModalContent from '@/components/modal/modalContent/FormOrderModalContent'
 import { ModalMode } from '@/model/ModalMode'
-
-interface ModalProps {
-	userStore?: UserStore
-}
+import { ModalProps } from '@/model/ModalProps'
 
 const CreateModal: FC<ModalProps> = ({ userStore }) => {
-
-
 	return (
 		<>
 			{userStore?.isOpenCreateModal &&
@@ -26,31 +20,18 @@ const CreateModal: FC<ModalProps> = ({ userStore }) => {
 								onClick={e => e.stopPropagation()}
 								className={style.formWrapper}>
 								{userStore.modalMode === ModalMode.CREATE_ORDER &&
-									<>
-										<FormOrder handleChange={userStore.changeHandler} order={userStore.organization} />
-										<div className={style.btnContainer}>
-											<button onClick={userStore.createOrder}>
-												Create Order
-											</button>
-											<button className={style.btnCancel}
-															onClick={userStore?.handleClose}>Cancel
-											</button>
-										</div>
-									</>
+									<FormOrderModalContent
+										handleChange={userStore.changeHandler}
+										createOrder={userStore.createOrder}
+										handleClose={userStore?.handleClose}
+										order={userStore.organization} />
 								}
 								{userStore.modalMode === ModalMode.CREATE_ORGANIZATION &&
-									<>
-									<FormOrganization handleChange={userStore.changeHandler}
-																		organization={userStore.organization} />
-										<div className={style.btnContainer}>
-											<button onClick={userStore.createOrganization}>
-												Create Organization
-											</button>
-											<button className={style.btnCancel}
-															onClick={userStore?.handleClose}>Cancel
-											</button>
-										</div>
-									</>
+										<FormOrganizationModalContent
+											handleChange={userStore.changeHandler}
+											createOrganization={userStore.createOrganization}
+											handleClose={userStore?.handleClose}
+											organization={userStore.organization} />
 								}
 							</div>
 						</div>

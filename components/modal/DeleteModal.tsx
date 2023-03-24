@@ -1,19 +1,11 @@
 import React, { FC } from 'react'
-import UserStore from '@/store/UserStore'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
-import style from '@/styles/Organizations.module.scss'
+import style from '@/styles/Modal.module.scss'
+import DeleteModalContent from '@/components/modal/modalContent/DeleteModalContent'
+import { ModalProps } from '@/model/ModalProps'
 
-interface DeleteModalProps {
-	userStore?: UserStore
-}
-
-const DeleteModal: FC<DeleteModalProps> = ({ userStore}) => {
-
-		const handleDelete = () => {
-			userStore?.deleteOrder()
-		}
-
+const DeleteModal: FC<ModalProps> = ({ userStore}) => {
 		return (
 			<>
 				{userStore?.isOpenDeleteModal &&
@@ -25,15 +17,7 @@ const DeleteModal: FC<DeleteModalProps> = ({ userStore}) => {
 								<div
 									onClick={e => e.stopPropagation()}
 									className={style.formWrapper}>
-									<div>Are you sure you want to delete the order?</div>
-									<div className={style.btnContainer}>
-										<button onClick={handleDelete}>
-											Delete Order
-										</button>
-										<button className={style.btnCancel}
-														onClick={userStore?.handleClose}>Cancel
-										</button>
-									</div>
+									<DeleteModalContent/>
 								</div>
 							</div>
 						</div>

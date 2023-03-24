@@ -20,6 +20,11 @@ const Organizations: FC<OrganizationsProps> = ({ userStore, authenticationStore 
 
 	useEffect(() => {
 		checkAuth()
+		let id = LocalUtils.getUserId()
+		let token = LocalUtils.getToken()
+		if (id && token) {
+			userStore?.getUserData(id, token)
+		}
 	}, [authenticationStore?.isAuth])
 
 	const checkAuth = () => {

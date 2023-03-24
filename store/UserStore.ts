@@ -13,6 +13,7 @@ class UserStore {
 	order: OrderType = {}
 	isOpenCreateModal: boolean = false
 	isOpenDeleteModal: boolean = false
+	isOpenUpdateModal: boolean = false
 
 	constructor() {
 		makeObservable(this, {
@@ -21,7 +22,8 @@ class UserStore {
 			organization: observable,
 			modalMode: observable,
 			isOpenCreateModal: observable,
-			isOpenDeleteModal: observable
+			isOpenDeleteModal: observable,
+			isOpenUpdateModal: observable
 		})
 	}
 
@@ -136,10 +138,18 @@ class UserStore {
 		})
 	}
 
+	openUpdateModal(organization: OrganizationType) {
+		runInAction(() => {
+			this.organization = organization
+			this.isOpenUpdateModal = true
+		})
+	}
+
 	handleClose = () => {
 		runInAction(() => {
 			this.isOpenCreateModal = false
 			this.isOpenDeleteModal = false
+			this.isOpenUpdateModal = false
 			this.order = {}
 			this.organization = {}
 		})

@@ -4,6 +4,8 @@ import Header from '@/components/Header'
 import SideBar from '@/components/SideBar'
 import CreateModal from '@/components/modal/CreateModal'
 import DeleteModal from '@/components/modal/DeleteModal'
+import UpdateModal from '@/components/modal/UpdateModal'
+
 
 interface MainLayoutProps {
 	children: ReactNode
@@ -25,6 +27,7 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => {
 				</div>
 				<CreateModal/>
 				<DeleteModal />
+				<UpdateModal />
 			</main>
 		</>
 	)

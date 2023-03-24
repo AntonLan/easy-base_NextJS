@@ -1,0 +1,77 @@
+import React, { FC } from 'react'
+import { OrganizationType } from '@/model/OrganizationType'
+import style from '@/styles/Modal.module.scss'
+
+
+interface FormOrganizationProps {
+	handleChange: (event: any) => void
+	createOrganization: () => void
+	handleClose: () => void
+	organization: OrganizationType
+}
+
+const FormOrganizationModalContent: FC<FormOrganizationProps> =
+	({
+		 handleChange,
+		 organization,
+		 createOrganization,
+		 handleClose
+	 }) => {
+		return (
+			<>
+
+				<form>
+					<div>
+						<h1>Name</h1>
+						<input
+							name='name'
+							onChange={handleChange}
+							value={organization.name}
+							id='name' type='text' placeholder='Name' />
+					</div>
+					<div>
+						<h1>Email</h1>
+						<input
+							name='email'
+							onChange={handleChange}
+							value={organization.email}
+							id='email' type='text' placeholder='Email' />
+					</div>
+					<div>
+						<h1>Phone</h1>
+						<input
+							name='phone'
+							onChange={handleChange}
+							value={organization.phone}
+							id='phone' type='text' placeholder='Phone' />
+					</div>
+					<div>
+						<h1>Form Organization</h1>
+						<input
+							name='formOrganization'
+							onChange={handleChange}
+							value={organization.formOrganization}
+							id='formOrganization' type='text' placeholder='Form Organization' />
+					</div>
+					<div>
+						<h1>Character</h1>
+						<input
+							name='character'
+							onChange={handleChange}
+							value={organization.character}
+							id='character' type='text' placeholder='Character' />
+					</div>
+				</form>
+				<div className={style.btnContainer}>
+					<button onClick={createOrganization}>
+						Create Organization
+					</button>
+					<button className={style.btnCancel}
+									onClick={handleClose}>Cancel
+					</button>
+				</div>
+			</>
+		)
+	}
+
+export default FormOrganizationModalContent
