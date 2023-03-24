@@ -8,7 +8,7 @@ interface FormOrganizationProps {
 	mode?: ModalMode
 	handleChange: (event: any) => void
 	createOrganization?: () => void
-	updateOrganization?: () => void
+	updateOrganization?: (organization: OrganizationType) => void
 	handleClose: () => void
 	organization: OrganizationType
 }
@@ -68,7 +68,7 @@ const FormOrganizationModalContent: FC<FormOrganizationProps> =
 				</form>
 				<div className={style.btnContainer}>
 					{mode === ModalMode.UPDATE_ORGANIZATION &&
-						<button onClick={updateOrganization}>
+						<button onClick={() => updateOrganization!(organization)}>
 							Update Organization
 						</button>
 					}

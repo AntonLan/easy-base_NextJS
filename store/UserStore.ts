@@ -61,6 +61,29 @@ class UserStore {
 		}
 	}
 
+
+	updateOrganization = async (organization: OrganizationType) => {
+		const reqBody = {
+			...organization,
+			...this.organization,
+			id: organization?._id,
+			userId: this.user._id
+		}
+		let { id, userId, ...newOrganization } = reqBody
+		let index = this.user.organizations?.indexOf(organization)
+		try {
+			await UserService.updateOrganization(reqBody)
+			runInAction(() => {
+				this.organization = {}
+				this.isOpenUpdateModal = !this.isOpenUpdateModal
+				this.user.organizations?.splice(index!, 1, newOrganization)
+			})
+		} catch (e) {
+			console.log(e)
+		}
+	}
+
+
 	createOrder = async () => {
 		const reqBody = {
 			...this.order,

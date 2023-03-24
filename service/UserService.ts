@@ -17,6 +17,12 @@ class UserService {
 		return res.data
 	}
 
+	static updateOrganization = async (organization: OrganizationType) => {
+		const path = 'http://localhost:5002/api/users/organizations'
+		const res = await axios.put(path, {...organization, Headers: 'application/json'})
+		return res.data
+	}
+
 	static createOrder = async (order: OrderType) => {
 		const path = 'http://localhost:5002/api/users/orders'
 		const res = await axios.post(path, {...order, Headers: 'application/json'})

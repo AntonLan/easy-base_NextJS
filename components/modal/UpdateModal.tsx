@@ -19,6 +19,7 @@ const UpdateModal: FC<ModalProps> = ({ userStore }) => {
 								className={style.formWrapper}>
 								<FormOrganizationModalContent
 									mode={userStore.modalMode}
+									updateOrganization={userStore.updateOrganization}
 									handleChange={userStore.changeHandler}
 									handleClose={userStore.handleClose}
 									organization={userStore.organization} />
