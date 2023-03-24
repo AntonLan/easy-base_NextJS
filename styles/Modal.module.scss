@@ -5,6 +5,10 @@
     @apply fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity;
   }
 
+  .deleteText {
+    @apply px-[40px] pt-[40px] pb-[10px] text-[18px];
+  }
+
   .modalWrapper {
     @apply fixed inset-0 z-10;
 

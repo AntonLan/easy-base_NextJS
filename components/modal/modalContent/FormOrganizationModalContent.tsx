@@ -1,11 +1,14 @@
 import React, { FC } from 'react'
 import { OrganizationType } from '@/model/OrganizationType'
 import style from '@/styles/Modal.module.scss'
+import { ModalMode } from '@/model/ModalMode'
 
 
 interface FormOrganizationProps {
+	mode?: ModalMode
 	handleChange: (event: any) => void
-	createOrganization: () => void
+	createOrganization?: () => void
+	updateOrganization?: () => void
 	handleClose: () => void
 	organization: OrganizationType
 }
@@ -15,11 +18,12 @@ const FormOrganizationModalContent: FC<FormOrganizationProps> =
 		 handleChange,
 		 organization,
 		 createOrganization,
+		 updateOrganization,
+		 mode,
 		 handleClose
 	 }) => {
 		return (
 			<>
-
 				<form>
 					<div>
 						<h1>Name</h1>
@@ -63,9 +67,16 @@ const FormOrganizationModalContent: FC<FormOrganizationProps> =
 					</div>
 				</form>
 				<div className={style.btnContainer}>
-					<button onClick={createOrganization}>
-						Create Organization
-					</button>
+					{mode === ModalMode.UPDATE_ORGANIZATION &&
+						<button onClick={updateOrganization}>
+							Update Organization
+						</button>
+					}
+					{mode === ModalMode.CREATE_ORGANIZATION &&
+						<button onClick={createOrganization}>
+							Create Organization
+						</button>
+					}
 					<button className={style.btnCancel}
 									onClick={handleClose}>Cancel
 					</button>

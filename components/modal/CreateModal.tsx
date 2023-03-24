@@ -28,6 +28,7 @@ const CreateModal: FC<ModalProps> = ({ userStore }) => {
 								}
 								{userStore.modalMode === ModalMode.CREATE_ORGANIZATION &&
 										<FormOrganizationModalContent
+											mode={userStore.modalMode}
 											handleChange={userStore.changeHandler}
 											createOrganization={userStore.createOrganization}
 											handleClose={userStore?.handleClose}

@@ -11,7 +11,7 @@ interface DeleteModalContentProps {
 const DeleteModalContent: FC<DeleteModalContentProps> = ({ userStore }) => {
 	return (
 		<>
-			<h1>Are you sure you want to delete the order?</h1>
+			<h1 className={style.deleteText}>Are you sure you want to delete the order?</h1>
 			<div className={style.btnContainer}>
 				<button onClick={() => userStore?.deleteOrder()}>
 					Delete Order
