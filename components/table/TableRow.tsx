@@ -24,18 +24,10 @@ const TableRow: FC<TableRowProps> = ({ order, userStore }) => {
 	return (
 		<>
 			<tr className={style.tableRow}>
-				<td scope='row' className={style.cellProgress}>
-					{order.progress}
-				</td>
-				<td>
-					{order.client}
-				</td>
-				<td>
-					{order.orderType}
-				</td>
-				<td>
-					{moment(order.createdAt).format('DD/MM/YYYY')}
-				</td>
+				<td scope='row' className={style.cellProgress}>{order.progress}</td>
+				<td>{order.client}</td>
+				<td>{order.orderType}</td>
+				<td>{moment(order.createdAt).format('DD/MM/YYYY')}</td>
 				<td>
 					<button type='button'
 									onClick={handleOpen}
