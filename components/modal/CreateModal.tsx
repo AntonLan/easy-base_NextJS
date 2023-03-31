@@ -1,13 +1,13 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import style from '@/styles/Modal.module.scss'
 import FormOrganizationModalContent from '@/components/modal/modalContent/FormOrganizationModalContent'
 import FormOrderModalContent from '@/components/modal/modalContent/FormOrderModalContent'
 import { ModalMode } from '@/model/ModalMode'
-import { ModalProps } from '@/model/ModalProps'
+import { StoreProps } from '@/model/StoreProps'
 
-const CreateModal: FC<ModalProps> = ({ userStore }) => {
+const CreateModal: FC<StoreProps> = ({ userStore }) => {
 	return (
 		<>
 			{userStore?.isOpenCreateModal &&

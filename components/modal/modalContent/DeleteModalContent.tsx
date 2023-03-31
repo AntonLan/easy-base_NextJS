@@ -1,14 +1,10 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import style from '@/styles/Modal.module.scss'
-import UserStore from '@/store/UserStore'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
+import { StoreProps } from '@/model/StoreProps'
 
-interface DeleteModalContentProps {
-	userStore?: UserStore
-}
-
-const DeleteModalContent: FC<DeleteModalContentProps> = ({ userStore }) => {
+const DeleteModalContent: FC<StoreProps> = ({ userStore }) => {
 	return (
 		<>
 			<h1 className={style.deleteText}>Are you sure you want to delete the order?</h1>

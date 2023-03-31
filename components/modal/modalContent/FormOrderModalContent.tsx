@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { OrderType } from '@/model/OrderType'
 import style from '@/styles/Modal.module.scss'
 
@@ -23,7 +23,8 @@ const FormOrderModalContent: FC<FormOrderProps> =
 						name='client'
 						onChange={handleChange}
 						value={order.client || ''}
-						id='client' type='text' placeholder='Client' />
+						type='text'
+						placeholder='Client' />
 				</div>
 				<div>
 					<h1>Order Type</h1>
@@ -31,7 +32,8 @@ const FormOrderModalContent: FC<FormOrderProps> =
 						name='orderType'
 						onChange={handleChange}
 						value={order.orderType || ''}
-						id='orderType' type='text' placeholder='Order Type' />
+						type='text'
+						placeholder='Order Type' />
 				</div>
 			</form>
 			<div className={style.btnContainer}>

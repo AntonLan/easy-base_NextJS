@@ -1,21 +1,13 @@
-import React, { FC, useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
-import UserStore from '@/store/UserStore'
-import AuthenticationStore from '@/store/AuthenticationStore'
 import Table from '@/components/table/Table'
 import LocalUtils from '@/utils/LocalUtils'
+import { StoreProps } from '@/model/StoreProps'
 
-interface MainProps {
-	userStore?: UserStore
-	authenticationStore?: AuthenticationStore
-}
-
-
-const Main: FC<MainProps> = ({ userStore, authenticationStore }) => {
+const Main: FC<StoreProps> = ({ userStore, authenticationStore }) => {
 	const router = useRouter()
-
 
 
 	useEffect(() => {
@@ -36,7 +28,7 @@ const Main: FC<MainProps> = ({ userStore, authenticationStore }) => {
 
 	return (
 		<>
-			<Table/>
+			<Table />
 		</>
 	)
 }

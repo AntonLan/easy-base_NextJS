@@ -1,16 +1,12 @@
 import React, { FC } from 'react'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
-import UserStore from '@/store/UserStore'
 import style from '@/styles/User.module.scss'
 import { svgUtils } from '@/utils/svgUtils'
+import { StoreProps } from '@/model/StoreProps'
 
-interface UserInitialProps {
-	userStore?: UserStore
 
-}
-
-const UserInitial: FC<UserInitialProps> = ({ userStore }) => {
+const UserInitial: FC<StoreProps> = ({ userStore }) => {
 	return (
 		<div className={style.wrapper}>
 			<div className={style.icon}>

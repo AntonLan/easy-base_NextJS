@@ -1,19 +1,14 @@
 import { FC } from 'react'
 import Link from 'next/link'
 import style from '@/styles/SideBar.module.scss'
-import UserStore from '@/store/UserStore'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import { useRouter } from 'next/router'
 import { ModalMode } from '@/model/ModalMode'
-
-interface SideBarProps {
-	userStore?: UserStore
-}
+import { StoreProps } from '@/model/StoreProps'
 
 
-
-const SideBar: FC<SideBarProps> = ({ userStore }) => {
+const SideBar: FC<StoreProps> = ({ userStore }) => {
 	const router = useRouter()
 	const currentRoute = router.pathname
 

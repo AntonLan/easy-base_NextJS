@@ -1,5 +1,4 @@
 import { FC, useEffect } from 'react'
-import useModeStore from '../store/ModeStore'
 import ThemeService from '../service/ThemeService'
 import { SunIcon } from '@heroicons/react/24/solid'
 import { MoonIcon } from '@heroicons/react/24/solid'

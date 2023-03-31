@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import style from '@/styles/Table.module.scss'
-import Link from 'next/link'
 import SvgSort from '@/components/table/SvgSort'
 
 const TableHead: FC = () => {
@@ -8,30 +7,35 @@ const TableHead: FC = () => {
 		<thead className={style.tableHead}>
 		<tr>
 			<th scope='col'>
-				Progress
+				<div>
+					Progress
+					<button>
+						<SvgSort />
+					</button>
+				</div>
 			</th>
 			<th scope='col'>
 				<div>
 					Client
-					<Link href='components#'>
+					<button>
 						<SvgSort />
-					</Link>
+					</button>
 				</div>
 			</th>
 			<th scope='col'>
 				<div>
 					Order Type
-					<Link href='components#'>
+					<button>
 						<SvgSort />
-					</Link>
+					</button>
 				</div>
 			</th>
 			<th scope='col'>
 				<div>
 					Created At
-					<Link href='components#'>
+					<button>
 						<SvgSort />
-					</Link>
+					</button>
 				</div>
 			</th>
 			<th scope='col'>

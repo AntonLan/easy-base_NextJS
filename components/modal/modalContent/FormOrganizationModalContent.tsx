@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { OrganizationType } from '@/model/OrganizationType'
 import style from '@/styles/Modal.module.scss'
 import { ModalMode } from '@/model/ModalMode'
@@ -31,7 +31,8 @@ const FormOrganizationModalContent: FC<FormOrganizationProps> =
 							name='name'
 							onChange={handleChange}
 							value={organization.name || ''}
-							id='name' type='text' placeholder='Name' />
+							type='text'
+							placeholder='Name' />
 					</div>
 					<div>
 						<h1>Email</h1>
@@ -39,7 +40,8 @@ const FormOrganizationModalContent: FC<FormOrganizationProps> =
 							name='email'
 							onChange={handleChange}
 							value={organization.email || ''}
-							id='email' type='text' placeholder='Email' />
+							type='text'
+							placeholder='Email' />
 					</div>
 					<div>
 						<h1>Phone</h1>
@@ -47,7 +49,8 @@ const FormOrganizationModalContent: FC<FormOrganizationProps> =
 							name='phone'
 							onChange={handleChange}
 							value={organization.phone || ''}
-							id='phone' type='text' placeholder='Phone' />
+							type='text'
+							placeholder='Phone' />
 					</div>
 					<div>
 						<h1>Form Organization</h1>
@@ -55,7 +58,8 @@ const FormOrganizationModalContent: FC<FormOrganizationProps> =
 							name='formOrganization'
 							onChange={handleChange}
 							value={organization.formOrganization || ''}
-							id='formOrganization' type='text' placeholder='Form Organization' />
+							type='text'
+							placeholder='Form Organization' />
 					</div>
 					<div>
 						<h1>Character</h1>
@@ -63,7 +67,8 @@ const FormOrganizationModalContent: FC<FormOrganizationProps> =
 							name='character'
 							onChange={handleChange}
 							value={organization.character || ''}
-							id='character' type='text' placeholder='Character' />
+							type='text'
+							placeholder='Character' />
 					</div>
 				</form>
 				<div className={style.btnContainer}>

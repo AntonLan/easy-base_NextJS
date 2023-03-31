@@ -1,20 +1,13 @@
 import { FC, useEffect } from 'react'
-import UserStore from '@/store/UserStore'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import Card from '@/components/Card'
-import AuthenticationStore from '@/store/AuthenticationStore'
 import { useRouter } from 'next/router'
 import style from '@/styles/Organizations.module.scss'
 import LocalUtils from '@/utils/LocalUtils'
+import { StoreProps } from '@/model/StoreProps'
 
-
-interface OrganizationsProps {
-	userStore?: UserStore
-	authenticationStore?: AuthenticationStore
-}
-
-const Organizations: FC<OrganizationsProps> = ({ userStore, authenticationStore }) => {
+const Organizations: FC<StoreProps> = ({ userStore, authenticationStore }) => {
 	const router = useRouter()
 
 
@@ -39,7 +32,6 @@ const Organizations: FC<OrganizationsProps> = ({ userStore, authenticationStore 
 				<Card key={o._id} organization={o}/>
 			))}
 		</div>
-
 	)
 }
 

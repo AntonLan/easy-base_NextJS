@@ -1,20 +1,14 @@
-import React, { FC, useEffect } from 'react'
-import AuthenticationLayout from '@/layout/AuthenticationLayout'
+import { FC, useEffect } from 'react'
 import style from '@/styles/Login.module.scss'
 import { useRouter } from 'next/router'
-import AuthenticationStore from '@/store/AuthenticationStore'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import Loader from '@/components/Loader'
 import NotificationMessage from '@/components/NotificationMessage'
 import LocalUtils from '@/utils/LocalUtils'
+import { StoreProps } from '@/model/StoreProps'
 
-interface SingInProps {
-	authenticationStore?: AuthenticationStore
-}
-
-
-const SingIn: FC<SingInProps> = ({ authenticationStore }) => {
+const SingIn: FC<StoreProps> = ({ authenticationStore }) => {
 	const router = useRouter()
 
 
@@ -32,7 +26,6 @@ const SingIn: FC<SingInProps> = ({ authenticationStore }) => {
 	}
 
 	const checkAuth = () => {
-
 		if (LocalUtils.getToken()) {
 			router.replace('/')
 		}

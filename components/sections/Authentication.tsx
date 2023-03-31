@@ -1,19 +1,14 @@
-import React, { FC, useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import style from '@/styles/Login.module.scss'
-import AuthenticationLayout from '@/layout/AuthenticationLayout'
 import { useRouter } from 'next/router'
-import AuthenticationStore from '@/store/AuthenticationStore'
 import LocalUtils from '@/utils/LocalUtils'
 import Loader from '@/components/Loader'
 import NotificationMessage from '@/components/NotificationMessage'
+import { StoreProps } from '@/model/StoreProps'
 
-interface RegistrationProps {
-	authenticationStore?: AuthenticationStore
-}
-
-const Authentication: FC<RegistrationProps> = ({ authenticationStore }) => {
+const Authentication: FC<StoreProps> = ({ authenticationStore }) => {
 	const router = useRouter()
 
 	useEffect(() => {

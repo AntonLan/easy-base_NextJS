@@ -1,11 +1,8 @@
-import { FC, ReactNode } from 'react'
+import { FC } from 'react'
 import Head from 'next/head'
+import { LayoutProps } from '@/model/LayoutProps'
 
-interface AuthenticationProps {
-	children: ReactNode
-}
-
-const AuthenticationLayout: FC<AuthenticationProps> = ({children}) => {
+const AuthenticationLayout: FC<LayoutProps> = ({children}) => {
 	return (
 		<>
 			<Head>

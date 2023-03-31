@@ -5,13 +5,9 @@ import SideBar from '@/components/SideBar'
 import CreateModal from '@/components/modal/CreateModal'
 import DeleteModal from '@/components/modal/DeleteModal'
 import UpdateModal from '@/components/modal/UpdateModal'
+import { LayoutProps } from '@/model/LayoutProps'
 
-
-interface MainLayoutProps {
-	children: ReactNode
-}
-
-const MainLayout: FC<MainLayoutProps> = ({ children }) => {
+const MainLayout: FC<LayoutProps> = ({ children }) => {
 	return (
 		<>
 			<Head>

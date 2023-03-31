@@ -1,14 +1,13 @@
 import { FC } from 'react'
 import { OrganizationType } from '@/model/OrganizationType'
-import UserStore from '@/store/UserStore'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import style from '@/styles/Card.module.scss'
 import { ModalMode } from '@/model/ModalMode'
+import { StoreProps } from '@/model/StoreProps'
 
-interface CardProps {
+interface CardProps extends StoreProps {
 	organization: OrganizationType
-	userStore?: UserStore
 }
 
 const Card: FC<CardProps> = ({ organization, userStore }) => {
