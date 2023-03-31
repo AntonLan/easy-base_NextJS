@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react'
+import { FC } from 'react'
 import Head from 'next/head'
 import Header from '@/components/Header'
 import SideBar from '@/components/SideBar'
@@ -6,8 +6,11 @@ import CreateModal from '@/components/modal/CreateModal'
 import DeleteModal from '@/components/modal/DeleteModal'
 import UpdateModal from '@/components/modal/UpdateModal'
 import { LayoutProps } from '@/model/LayoutProps'
+import NotificationMessage from '@/components/NotificationMessage'
+import { inject, observer } from 'mobx-react'
+import InjectNames from '@/store/configuration/storeIdentifier'
 
-const MainLayout: FC<LayoutProps> = ({ children }) => {
+const MainLayout: FC<LayoutProps> = ({ children, userStore }) => {
 	return (
 		<>
 			<Head>
@@ -16,17 +19,18 @@ const MainLayout: FC<LayoutProps> = ({ children }) => {
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 			</Head>
 			<main>
-				<Header/>
+				<Header />
 				<div className='main-container'>
 					<SideBar />
 					{children}
 				</div>
-				<CreateModal/>
+				<CreateModal />
 				<DeleteModal />
 				<UpdateModal />
+				{userStore?.error && <NotificationMessage message={userStore?.error} />}
 			</main>
 		</>
 	)
 }
 
-export default MainLayout
+export default inject(InjectNames.UserStore)(observer(MainLayout))

@@ -1,5 +1,5 @@
 .notification {
-  @apply fixed top-[2%] left-1/2 -translate-x-[50%] min-w-[200px] text-center mb-3 inline-flex items-center rounded-lg bg-red-300 py-5 px-6 text-sm text-red-900;
+  @apply fixed top-[2%] z-50 left-1/2 -translate-x-[50%] min-w-[200px] text-center mb-3 inline-flex items-center rounded-lg bg-red-300 py-5 px-6 text-sm text-red-900;
 
   span {
     @apply mr-2;
@@ -7,5 +7,9 @@
 
   svg {
     @apply h-5 w-5;
+  }
+
+  .closeBtn {
+    @apply w-4 h-4 m-1 absolute right-1 top-1 text-black inline-flex;
   }
 }
