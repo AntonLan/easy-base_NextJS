@@ -4,6 +4,7 @@ import { UserType } from '@/model/UserType'
 import { OrganizationType } from '@/model/OrganizationType'
 import { OrderType } from '@/model/OrderType'
 import { ModalMode } from '@/model/ModalMode'
+import Utils from '@/utils/Utils'
 
 
 class UserStore {
@@ -172,6 +173,15 @@ class UserStore {
 			this.isOpenUpdateModal = true
 		})
 	}
+
+
+	sortUser = (sortedBy: any) => {
+		runInAction(() => {
+			if (this.user)
+				this.user.orders = Utils.sortArrayOfObjects(this.user?.orders!, sortedBy, 'ascending')
+			})
+		}
+
 
 	handleOpen = (id?: string) => {
 		runInAction(() => {
