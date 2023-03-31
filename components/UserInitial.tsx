@@ -12,7 +12,7 @@ const UserInitial: FC<StoreProps> = ({ userStore }) => {
 			<div className={style.icon}>
 				<svg fill='#379BA6' viewBox='0 0 20 20'
 						 xmlns='http://www.w3.org/2000/svg'>
-					<path fillRule='evenodd' d={svgUtils.userInitSvgPath} clipRule='evenodd'></path>
+					<path d={svgUtils.userInitSvgPath}></path>
 				</svg>
 			</div>
 			<span>{userStore?.user.userName}</span>
