@@ -50,7 +50,7 @@ const DropRow: FC<DropRowProps> = ({ order, isOpen, userStore }) => {
 			</td>
 			<td>
 				<button onClick={userStore?.handleClose}
-								className={style.delete}>
+								className={style.cancel}>
 					Cancel
 				</button>
 			</td>

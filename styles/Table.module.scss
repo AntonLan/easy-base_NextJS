@@ -44,6 +44,10 @@
           .edit {
             @apply font-medium text-primary dark:text-blue-500 hover:underline;
           }
+
+          .cancel {
+            @apply w-[50px] font-medium text-red-900 hover:underline;
+          }
         }
 
         .cellProgress {
@@ -51,7 +55,7 @@
         }
 
         input {
-          @apply bg-light-gray focus:outline-none;
+          @apply bg-white focus:outline-none p-2 rounded shadow;
         }
 
         select {
@@ -63,7 +67,7 @@
       @apply bg-white border-b dark:bg-gray-800 dark:border-gray-700;
 
       td {
-        @apply px-6 py-4 w-[200px];
+        @apply px-6 py-4 w-[200px] max-w-[200px] min-w-[200px];
 
         .edit {
           @apply font-medium text-primary hover:underline;
