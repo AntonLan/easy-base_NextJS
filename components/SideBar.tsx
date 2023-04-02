@@ -6,6 +6,7 @@ import InjectNames from '@/store/configuration/storeIdentifier'
 import { useRouter } from 'next/router'
 import { ModalMode } from '@/model/ModalMode'
 import { StoreProps } from '@/model/StoreProps'
+import ToggleDarkMode from '@/components/ToggleDarkMode'
 
 
 const SideBar: FC<StoreProps> = ({ userStore }) => {
@@ -49,6 +50,9 @@ const SideBar: FC<StoreProps> = ({ userStore }) => {
 							className={style.createBtn}>
 							Create organization
 						</button>
+					</li>
+					<li>
+						<ToggleDarkMode />
 					</li>
 				</ul>
 			</div>

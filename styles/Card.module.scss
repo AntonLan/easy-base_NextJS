@@ -1,12 +1,12 @@
 .cardWrapper {
   @apply block cursor-pointer w-[200px] h-[200px] m-2.5 p-6 bg-white border border-gray-200 rounded-lg shadow
-  hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700;
+  hover:bg-gray-100;
 
   h1 {
-    @apply mb-2 text-[18px] font-bold tracking-tight text-main dark:text-white;
+    @apply mb-2 text-[18px] font-bold tracking-tight text-main;
   }
 
   p {
-    @apply font-normal text-[14px] text-gray-700 dark:text-gray-400 py-0.5;
+    @apply font-normal text-[14px] text-gray-700 py-0.5;
   }
 }
