@@ -2,7 +2,7 @@
   @apply w-64;
 
   .sidebar {
-    @apply h-full px-3 pb-4 overflow-y-auto bg-white;
+    @apply h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-500;
 
     ul {
       @apply space-y-2;
@@ -11,7 +11,7 @@
         @apply mt-[50%];
 
         .createBtn {
-          @apply text-white bg-primary hover:bg-main shadow-lg dark:bg-red-900 shadow-primary/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2;
+          @apply text-white bg-primary hover:bg-main shadow-lg dark:bg-gray-700 dark:hover:bg-gray-900 shadow-gray-700/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2;
         }
 
         .navigation {

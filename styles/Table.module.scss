@@ -1,12 +1,12 @@
 .tableContainer {
-  @apply relative overflow-x-auto w-[100%] h-[calc(100vh-81px)] mx-auto mt-5 rounded-tl-md shadow-md  dark:bg-gray-800;
+  @apply relative overflow-x-auto w-[100%] h-[calc(100vh-81px)] mx-auto mt-5 rounded-tl-md shadow-md  dark:bg-gray-600;
 
   .table {
-    @apply w-full text-sm text-left text-gray-500 dark:text-gray-400;
+    @apply w-full text-sm text-left text-gray-500 dark:text-light-gray;
 
 
     .tableHead {
-      @apply text-xs text-main uppercase bg-gray-50 dark:text-primary dark:text-gray-400;
+      @apply text-xs text-main uppercase bg-gray-50 dark:bg-gray-800 dark:text-dark-txt-color;
 
       svg {
         @apply w-3 h-3 ml-1;
@@ -25,7 +25,7 @@
       }
     }
       .dropRow {
-        @apply bg-light-gray border-b border-2 shadow-inner;
+        @apply bg-light-gray border-b border-2 shadow-inner dark:bg-gray-800;
         animation: growOut 450ms ease-in-out forwards;
         transform-origin: top center;
 
@@ -46,11 +46,11 @@
           @apply px-6 py-4 w-[200px] max-w-[200px] min-w-[200px] sm:w-[100px] sm:max-w-[100px] sm:min-w-[100px];
 
           .edit {
-            @apply font-medium text-primary hover:underline;
+            @apply font-medium text-primary hover:underline dark:text-dark-txt-color;
           }
 
           .cancel {
-            @apply w-[50px] font-medium text-red-900 hover:underline;
+            @apply w-[50px] font-medium text-red-900 hover:underline dark:text-[#DC4B00];
           }
         }
 
@@ -59,31 +59,31 @@
         }
 
         input {
-          @apply bg-white focus:outline-none p-2 rounded shadow w-full;
+          @apply bg-white focus:outline-none p-2 rounded shadow w-full dark:bg-gray-500;
         }
 
         select {
-          @apply m-0 p-0 bg-light-gray focus:outline-none;
+          @apply m-0 p-0 bg-light-gray focus:outline-none dark:bg-gray-800;
         }
       }
 
     .tableRow {
-      @apply bg-white border-b dark:bg-gray-800 dark:border-gray-700;
+      @apply bg-white border-b dark:bg-gray-700 dark:border-gray-200;
 
       td {
         @apply px-6 py-4 w-[200px] max-w-[200px] min-w-[200px] sm:w-[100px] sm:max-w-[100px] sm:min-w-[100px];
 
         .edit {
-          @apply font-medium text-primary hover:underline;
+          @apply font-medium text-primary hover:underline dark:text-dark-txt-color;
         }
 
         .delete {
-          @apply w-[50px] font-medium text-red-900 hover:underline;
+          @apply w-[50px] font-medium text-red-900 hover:underline dark:text-[#DC4B00];
         }
       }
 
       .cellProgress {
-        @apply px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white;
+        @apply px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-300;
       }
     }
   }
