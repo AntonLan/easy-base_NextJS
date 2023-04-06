@@ -6,7 +6,7 @@ import Table from '@/components/table/Table'
 import LocalUtils from '@/utils/LocalUtils'
 import { StoreProps } from '@/model/StoreProps'
 
-const Main: FC<StoreProps> = ({ userStore, authenticationStore }) => {
+const Main: FC<StoreProps> = ({ userStore, authenticationStore}) => {
 	const router = useRouter()
 
 

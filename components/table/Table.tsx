@@ -5,8 +5,10 @@ import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import style from '@/styles/Table.module.scss'
 import { StoreProps } from '@/model/StoreProps'
+import Pagination from '@/components/table/Pagination'
 
-const Table: FC<StoreProps> = ({ userStore }) => {
+const Table: FC<StoreProps> = ({ userStore, tableStore}) => {
+	const actualOrder = tableStore?.getActualOrders(userStore?.user?.orders)
 
 
 	return (
@@ -14,13 +16,14 @@ const Table: FC<StoreProps> = ({ userStore }) => {
 			<table className={style.table}>
 				<TableHead />
 				<tbody>
-				{userStore?.user.orders?.map( order => (
-					<TableRow key={order._id} order={order}/>
-					))}
+				{actualOrder?.map(order => (
+					<TableRow key={order?._id} order={order} />
+				))}
 				</tbody>
 			</table>
+			<Pagination />
 		</div>
 	)
 }
 
-export default inject(InjectNames.UserStore)(observer(Table))
+export default inject(InjectNames.UserStore, InjectNames.TableStore)(observer(Table))
