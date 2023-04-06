@@ -8,15 +8,12 @@ import { StoreProps } from '@/model/StoreProps'
 import Pagination from '@/components/table/Pagination'
 
 const Table: FC<StoreProps> = ({ userStore, tableStore}) => {
-	const actualOrder = tableStore?.getActualOrders(userStore?.user?.orders)
-
-
 	return (
 		<div className={style.tableContainer}>
 			<table className={style.table}>
 				<TableHead />
 				<tbody>
-				{actualOrder?.map(order => (
+				{tableStore?.getActualOrders(userStore?.user?.orders).map(order => (
 					<TableRow key={order?._id} order={order} />
 				))}
 				</tbody>

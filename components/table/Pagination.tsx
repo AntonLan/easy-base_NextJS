@@ -5,7 +5,6 @@ import InjectNames from '@/store/configuration/storeIdentifier'
 import style from '@/styles/Pagination.module.scss'
 
 const Pagination: FC<StoreProps> = ({tableStore,userStore}) => {
-	const pagesArray = tableStore?.getPages(userStore?.user.orders?.length)
 
 	return (
 		<div className={style.container}>
@@ -22,7 +21,7 @@ const Pagination: FC<StoreProps> = ({tableStore,userStore}) => {
 					<p>Previous</p>
 				</button>
 				<div className={style.page}>
-					{pagesArray?.map((page, index) => (
+					{tableStore?.getPages(userStore?.user.orders?.length).map((page, index) => (
 						<p onClick={() => tableStore?.changePage(page)}
 							key={page}
 							 className={tableStore?.currentPage === page ? style.pageActive : ''}
