@@ -1,37 +1,44 @@
 import { FC } from 'react'
 import style from '@/styles/Table.module.scss'
-import Link from 'next/link'
 import SvgSort from '@/components/table/SvgSort'
+import { StoreProps } from '@/model/StoreProps'
+import { inject, observer } from 'mobx-react'
+import InjectNames from '@/store/configuration/storeIdentifier'
 
-const TableHead: FC = () => {
+const TableHead: FC<StoreProps> = ({userStore}) => {
 	return (
 		<thead className={style.tableHead}>
 		<tr>
 			<th scope='col'>
-				Progress
-			</th>
-			<th scope='col'>
 				<div>
-					Client
-					<Link href='components#'>
+					Progress
+					<button onClick={() => userStore?.sortUser('progress')}>
 						<SvgSort />
-					</Link>
+					</button>
 				</div>
 			</th>
 			<th scope='col'>
 				<div>
-					Order Type
-					<Link href='components#'>
+					Client
+					<button onClick={() => userStore?.sortUser('client')}>
 						<SvgSort />
-					</Link>
+					</button>
+				</div>
+			</th>
+			<th scope='col'>
+				<div onClick={() => userStore?.sortUser('orderType')}>
+					Order Type
+					<button>
+						<SvgSort />
+					</button>
 				</div>
 			</th>
 			<th scope='col'>
 				<div>
 					Created At
-					<Link href='components#'>
+					<button onClick={() => userStore?.sortUser('createdAt')}>
 						<SvgSort />
-					</Link>
+					</button>
 				</div>
 			</th>
 			<th scope='col'>
@@ -45,4 +52,4 @@ const TableHead: FC = () => {
 	)
 }
 
-export default TableHead
+export default inject(InjectNames.UserStore)(observer(TableHead))

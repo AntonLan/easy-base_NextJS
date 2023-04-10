@@ -1,36 +1,18 @@
-import { FC, useEffect } from 'react'
-import useModeStore from '../store/ModeStore'
-import ThemeService from '../service/ThemeService'
-import { SunIcon } from '@heroicons/react/24/solid'
-import { MoonIcon } from '@heroicons/react/24/solid'
-import ModeStore from '../store/ModeStore'
-import { inject } from 'mobx-react'
-import InjectNames from '@/store/configuration/storeIdentifier'
-import { observable } from 'mobx'
+import { FC } from 'react'
+import { useTheme } from 'next-themes'
 
-interface ToggleProps {
-	modeStore?: ModeStore
-}
-
-const ToggleDarkMode: FC<ToggleProps> = ({modeStore}) => {
-
-	useEffect(() => {
-		ThemeService.checkTheme()
-	}, [modeStore?.darkMode])
+const ToggleDarkMode: FC = () => {
+	const { systemTheme, theme, setTheme } = useTheme()
+	const currentTheme = theme === 'system' ? systemTheme : theme
 
 	return (
-		<div className='inline-flex items-center p-[2px] rounded-3xl dark:bg-zinc-600'>
-			<button
-				className={`${
-					!modeStore?.darkMode ? 'bg-white text-black' : ''
-				} cursor-pointer rounded-3xl p-2`}
-				onClick={() => modeStore?.switchMode()}
-			>
-				{!modeStore?.darkMode ? <SunIcon /> : <MoonIcon />}
-			</button>
-		</div>
+		<button
+			onClick={() => theme === 'dark' ? setTheme('light') : setTheme('dark')}
+			className='text-[12px] bg-gray-800 dark:bg-gray-50 hover:bg-gray-600 dark:hover:bg-gray-300 transition-all duration-100 text-white dark:text-gray-800 px-8 py-2 rounded-lg absolute bottom-32'>
+			Toggle Mode
+		</button>
 	)
 
 }
 
-export default inject(InjectNames.ModeStore) (observable(ToggleDarkMode))
+export default ToggleDarkMode

@@ -4,6 +4,7 @@ import { UserType } from '@/model/UserType'
 import { OrganizationType } from '@/model/OrganizationType'
 import { OrderType } from '@/model/OrderType'
 import { ModalMode } from '@/model/ModalMode'
+import Utils from '@/utils/Utils'
 
 
 class UserStore {
@@ -11,6 +12,7 @@ class UserStore {
 	modalMode: ModalMode = ModalMode.CREATE_ORDER
 	organization: OrganizationType = {}
 	order: OrderType = {}
+	error: string = ''
 	isOpenCreateModal: boolean = false
 	isOpenDeleteModal: boolean = false
 	isOpenUpdateModal: boolean = false
@@ -21,6 +23,7 @@ class UserStore {
 			order: observable,
 			organization: observable,
 			modalMode: observable,
+			error: observable,
 			isOpenCreateModal: observable,
 			isOpenDeleteModal: observable,
 			isOpenUpdateModal: observable
@@ -33,9 +36,12 @@ class UserStore {
 			const res = await UserService.getUserData(id, token)
 			runInAction(() => {
 				this.user = res
+				this.error = ''
 			})
-		} catch (e) {
-			console.log(e)
+		} catch (e: any) {
+			runInAction(() => {
+				this.error = this.error = e.request.statusText
+			})
 		}
 	}
 
@@ -47,6 +53,19 @@ class UserStore {
 	}
 
 	createOrganization = async () => {
+		if (!this.organization?.name
+			|| !this.organization?.formOrganization
+			|| !this.organization?.email
+			|| !this.organization?.phone
+			|| !this.organization?.character
+		) {
+			runInAction(() => {
+				this.error = 'Please make sure all fields are filled in correctly'
+			})
+			return
+		}
+
+
 		const reqBody = {
 			...this.organization,
 			userId: this.user._id
@@ -54,12 +73,15 @@ class UserStore {
 		try {
 			const res = await UserService.createOrganization(reqBody)
 			runInAction(() => {
+				this.error = ''
 				this.user.organizations?.push(res)
 				this.isOpenCreateModal = !this.isOpenCreateModal
 				this.organization = {}
 			})
-		} catch (e) {
-			console.log(e)
+		} catch (e: any) {
+			runInAction(() => {
+				this.error = this.error = e.request.statusText
+			})
 		}
 	}
 
@@ -77,16 +99,26 @@ class UserStore {
 			await UserService.updateOrganization(reqBody)
 			runInAction(() => {
 				this.organization = {}
+				this.error = ''
 				this.isOpenUpdateModal = !this.isOpenUpdateModal
 				this.user.organizations?.splice(index!, 1, newOrganization)
 			})
-		} catch (e) {
-			console.log(e)
+		} catch (e: any) {
+			runInAction(() => {
+				this.error = this.error = e.request.statusText
+			})
 		}
 	}
 
 
 	createOrder = async () => {
+		if (!this.order?.client || !this.order?.orderType) {
+			runInAction(() => {
+				this.error = 'Please make sure all fields are filled in correctly'
+			})
+			return
+		}
+
 		const reqBody = {
 			...this.order,
 			userId: this.user._id
@@ -94,12 +126,15 @@ class UserStore {
 		try {
 			const res = await UserService.createOrder(reqBody)
 			runInAction(() => {
+				this.error = ''
 				this.user.orders?.push({ ...res, isSelected: false })
 				this.isOpenCreateModal = !this.isOpenCreateModal
 				this.order = {}
 			})
-		} catch (e) {
-			console.log(e)
+		} catch (e: any) {
+			runInAction(() => {
+				this.error = this.error = e.request.statusText
+			})
 		}
 	}
 
@@ -118,11 +153,14 @@ class UserStore {
 		try {
 			await UserService.updateOrder(reqBody)
 			runInAction(() => {
+				this.error = ''
 				this.order = {}
 				this.user.orders?.splice(index!, 1, newOrder)
 			})
-		} catch (e) {
-			console.log(e)
+		} catch (e: any) {
+			runInAction(() => {
+				this.error = this.error = e.request.statusText
+			})
 		}
 	}
 
@@ -137,11 +175,14 @@ class UserStore {
 		try {
 			await UserService.deleteOrder(reqBody)
 			runInAction(() => {
+				this.error = ''
 				this.user.orders?.splice(index!, 1)
 				this.isOpenDeleteModal = !this.isOpenDeleteModal
 			})
-		} catch (e) {
-			console.log(e)
+		} catch (e: any) {
+			runInAction(() => {
+				this.error = this.error = e.request.statusText
+			})
 		}
 	}
 
@@ -173,6 +214,15 @@ class UserStore {
 		})
 	}
 
+
+	sortUser = (sortedBy: any) => {
+		runInAction(() => {
+			if (this.user)
+				this.user.orders = Utils.sortArrayOfObjects(this.user?.orders!, sortedBy, 'ascending')
+			})
+		}
+
+
 	handleOpen = (id?: string) => {
 		runInAction(() => {
 			this.user.orders?.map(order => {
@@ -189,6 +239,7 @@ class UserStore {
 			this.user.orders?.map(order => order.isSelected = false)
 			this.order = {}
 			this.organization = {}
+			this.error = ''
 		})
 	}
 

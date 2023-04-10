@@ -6,10 +6,10 @@
   }
 
   .icon {
-    @apply relative w-10 h-10 overflow-hidden bg-light-gray rounded-full dark:bg-gray-600 shadow-md;
+    @apply relative w-10 h-10 overflow-hidden bg-light-gray rounded-full dark:bg-gray-300 shadow-md;
 
     svg {
-      @apply absolute w-12 h-12 text-gray-400 -left-1;
+      @apply absolute w-12 h-12 text-gray-400 text-gray-100 -left-1;
     }
   }
 }

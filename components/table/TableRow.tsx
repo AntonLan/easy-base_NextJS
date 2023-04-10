@@ -1,20 +1,17 @@
-import React, { FC, useState } from 'react'
+import { FC } from 'react'
 import { OrderType } from '@/model/OrderType'
 import style from '@/styles/Table.module.scss'
 import { inject, observer } from 'mobx-react'
 import DropRow from '@/components/table/DropRow'
 import moment from 'moment'
 import InjectNames from '@/store/configuration/storeIdentifier'
-import UserStore from '@/store/UserStore'
+import { StoreProps } from '@/model/StoreProps'
 
-interface TableRowProps {
-	userStore?: UserStore
+interface TableRowProps extends StoreProps {
 	order: OrderType
 }
 
 const TableRow: FC<TableRowProps> = ({ order, userStore }) => {
-
-
 	return (
 		<>
 			<tr className={style.tableRow}>
@@ -23,17 +20,13 @@ const TableRow: FC<TableRowProps> = ({ order, userStore }) => {
 				<td>{order.orderType}</td>
 				<td>{moment(order.createdAt).format('DD/MM/YYYY')}</td>
 				<td>
-					<button type='button'
-									onClick={() => userStore?.handleOpen(order._id)}
-									className={style.edit}
-									id='menu-button' aria-expanded='true' aria-haspopup='true'>Edit
+					<button onClick={() => userStore?.handleOpen(order._id)}
+									className={style.edit}>Edit
 					</button>
 				</td>
 				<td>
-					<button type='button'
-									onClick={() => userStore?.openDeleteModal(order)}
-									className={style.delete}
-									id='menu-button' aria-expanded='true' aria-haspopup='true'>Delete
+					<button onClick={() => userStore?.openDeleteModal(order)}
+									className={style.delete}>Delete
 					</button>
 				</td>
 			</tr>

@@ -1,15 +1,14 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import style from '@/styles/Table.module.scss'
 import { OrderType } from '@/model/OrderType'
 import moment from 'moment/moment'
-import UserStore from '@/store/UserStore'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import OrderProgress from '@/components/OrderProgress'
+import { StoreProps } from '@/model/StoreProps'
 
-interface DropRowProps {
+interface DropRowProps extends StoreProps {
 	order: OrderType
-	userStore?: UserStore
 	isOpen: (id?: string) => void
 }
 
@@ -31,7 +30,6 @@ const DropRow: FC<DropRowProps> = ({ order, isOpen, userStore }) => {
 					name='client'
 					value={userStore?.order.client || order.client}
 					type='text'
-
 					onChange={userStore?.changeHandler}
 				/>
 			</td>
@@ -40,24 +38,19 @@ const DropRow: FC<DropRowProps> = ({ order, isOpen, userStore }) => {
 					name='orderType'
 					value={userStore?.order.orderType || order.orderType}
 					type='text'
-
 					onChange={userStore?.changeHandler}
 				/>
 			</td>
 			<td>{moment(order.createdAt).format('DD/MM/YYYY')}</td>
 			<td>
-				<button
-					onClick={handleUpdate}
-					type='button'
-					className={style.edit}>
+				<button onClick={handleUpdate}
+								className={style.edit}>
 					Update
 				</button>
 			</td>
 			<td>
-				<button
-					onClick={userStore?.handleClose}
-					type='button'
-					className={style.delete}>
+				<button onClick={userStore?.handleClose}
+								className={style.cancel}>
 					Cancel
 				</button>
 			</td>

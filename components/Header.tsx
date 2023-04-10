@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import AuthenticationStore from '@/store/AuthenticationStore'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import UserInitial from '@/components/UserInitial'
@@ -7,12 +6,10 @@ import Image from 'next/image'
 import Logo from '@/assets/logo/Light Logo.svg'
 import style from '@/styles/Header.module.scss'
 import Link from 'next/link'
+import { StoreProps } from '@/model/StoreProps'
 
-interface HeaderProps {
-	authenticationStore?: AuthenticationStore
-}
 
-const Header: FC<HeaderProps> = ({ authenticationStore }) => {
+const Header: FC<StoreProps> = ({ authenticationStore }) => {
 	return (
 		<div className={style.header}>
 			<Link href='/'>
