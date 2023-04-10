@@ -16,6 +16,7 @@ class UserStore {
 	isOpenCreateModal: boolean = false
 	isOpenDeleteModal: boolean = false
 	isOpenUpdateModal: boolean = false
+	isUserDropMenu: boolean = false
 
 	constructor() {
 		makeObservable(this, {
@@ -26,7 +27,8 @@ class UserStore {
 			error: observable,
 			isOpenCreateModal: observable,
 			isOpenDeleteModal: observable,
-			isOpenUpdateModal: observable
+			isOpenUpdateModal: observable,
+			isUserDropMenu: observable
 		})
 	}
 
@@ -214,6 +216,12 @@ class UserStore {
 		})
 	}
 
+	openUserMenu = () => {
+		runInAction(() => {
+			this.isUserDropMenu = !this.isUserDropMenu
+		})
+	}
+
 
 	sortUser = (sortedBy: any) => {
 		runInAction(() => {
@@ -236,6 +244,7 @@ class UserStore {
 			this.isOpenCreateModal = false
 			this.isOpenDeleteModal = false
 			this.isOpenUpdateModal = false
+			this.isUserDropMenu = false
 			this.user.orders?.map(order => order.isSelected = false)
 			this.order = {}
 			this.organization = {}

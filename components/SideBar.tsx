@@ -51,9 +51,6 @@ const SideBar: FC<StoreProps> = ({ userStore }) => {
 							Create organization
 						</button>
 					</li>
-					<li>
-						<ToggleDarkMode />
-					</li>
 				</ul>
 			</div>
 		</div>

@@ -7,6 +7,7 @@ import Logo from '@/assets/logo/Light Logo.svg'
 import style from '@/styles/Header.module.scss'
 import Link from 'next/link'
 import { StoreProps } from '@/model/StoreProps'
+import ToggleDarkMode from '@/components/ToggleDarkMode'
 
 
 const Header: FC<StoreProps> = ({ authenticationStore }) => {
@@ -22,6 +23,7 @@ const Header: FC<StoreProps> = ({ authenticationStore }) => {
 			<div className={style.userWrapper}>
 				<UserInitial/>
 				<button onClick={authenticationStore?.singOut}>sing out</button>
+				<ToggleDarkMode />
 			</div>
 		</div>
 	)

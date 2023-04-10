@@ -1,5 +1,5 @@
 .wrapper {
-  @apply flex items-center gap-1.5;
+  @apply cursor-pointer relative flex items-center gap-1.5;
 
   span {
     @apply text-light-gray;
