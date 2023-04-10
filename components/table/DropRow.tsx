@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import style from '@/styles/Table.module.scss'
 import { OrderType } from '@/model/OrderType'
 import moment from 'moment/moment'

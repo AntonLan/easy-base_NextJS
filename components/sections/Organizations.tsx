@@ -21,7 +21,7 @@ const Organizations: FC<StoreProps> = ({ userStore, authenticationStore }) => {
 	}, [authenticationStore?.isAuth])
 
 	const checkAuth = () => {
-		if (!LocalUtils.getToken()) {
+		if (LocalUtils.getToken()) {
 			router.replace('/login')
 		}
 	}

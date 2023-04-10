@@ -12,8 +12,6 @@ interface TableRowProps extends StoreProps {
 }
 
 const TableRow: FC<TableRowProps> = ({ order, userStore }) => {
-
-
 	return (
 		<>
 			<tr className={style.tableRow}>

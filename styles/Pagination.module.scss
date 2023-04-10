@@ -2,11 +2,11 @@
   @apply absolute bottom-0 left-[45%] -translate-x-[45%] flex items-center justify-center py-10 lg:px-0 sm:px-6 px-4;
 
   .wrapper {
-    @apply  w-full flex items-center justify-between border-t border-gray-200;
+    @apply w-full flex items-center justify-between border-t border-gray-200;
 
 
     button {
-      @apply flex items-center pt-3 text-gray-600 hover:text-indigo-700 cursor-pointer;
+      @apply flex items-center pt-3 text-gray-600 hover:text-primary cursor-pointer dark:text-light-gray dark:hover:text-dark-txt-color;
 
       p {
         @apply text-sm mx-3 font-medium leading-none;
@@ -18,11 +18,11 @@
       @apply sm:flex hidden;
 
       p {
-        @apply text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2;
+        @apply text-sm font-medium leading-none cursor-pointer dark:hover:text-dark-txt-color dark:text-light-gray text-gray-600 hover:text-main border-t border-transparent hover:border-primary pt-3 mr-4 px-2;
       }
 
       .pageActive {
-        @apply text-sm font-medium leading-none cursor-pointer text-indigo-700 border-t border-indigo-400 pt-3 mr-4 px-2;
+        @apply text-sm font-medium leading-none cursor-pointer dark:hover:text-dark-txt-color dark:text-dark-txt-color text-main border-t border-primary pt-3 mr-4 px-2;
       }
     }
 

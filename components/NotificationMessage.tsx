@@ -19,15 +19,15 @@ const NotificationMessage: FC<NotificationMessageProps> = ({ message }) => {
     </svg>
   </span>
 			{message}
-			{/*<button*/}
-			{/*	className={style.closeBtn}>*/}
-			{/*	<svg fill='#7f1d1d' viewBox='0 0 20 20'*/}
-			{/*			 xmlns='http://www.w3.org/2000/svg'>*/}
-			{/*		<path*/}
-			{/*			d={svgUtils.closeSvgPath}*/}
-			{/*		></path>*/}
-			{/*	</svg>*/}
-			{/*</button>*/}
+			<button
+				className={style.closeBtn}>
+				<svg fill='#7f1d1d' viewBox='0 0 20 20'
+						 xmlns='http://www.w3.org/2000/svg'>
+					<path
+						d={svgUtils.closeSvgPath}
+					></path>
+				</svg>
+			</button>
 		</div>
 	)
 }
