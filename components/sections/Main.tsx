@@ -20,8 +20,7 @@ const Main: FC<StoreProps> = ({ userStore, authenticationStore}) => {
 	}, [authenticationStore?.isAuth])
 
 	const checkAuth = () => {
-		let token = localStorage.getItem('token')
-		if (!token) {
+		if (!LocalUtils.getToken()) {
 			router.replace('/login')
 		}
 	}
