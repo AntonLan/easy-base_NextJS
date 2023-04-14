@@ -9,6 +9,7 @@ import { LayoutProps } from '@/model/LayoutProps'
 import NotificationMessage from '@/components/NotificationMessage'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
+import ContentBar from '@/components/ContentBar'
 
 const MainLayout: FC<LayoutProps> = ({ children, userStore }) => {
 	return (
@@ -22,7 +23,10 @@ const MainLayout: FC<LayoutProps> = ({ children, userStore }) => {
 				<Header />
 				<div className='main-container'>
 					<SideBar />
-					{children}
+					<div className='content'>
+						<ContentBar />
+						{children}
+					</div>
 				</div>
 				<CreateModal />
 				<DeleteModal />

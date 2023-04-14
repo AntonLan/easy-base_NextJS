@@ -1,15 +1,24 @@
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
+import { SunIcon } from '@heroicons/react/24/solid'
+import { MoonIcon } from '@heroicons/react/24/solid'
 
 const ToggleDarkMode: FC = () => {
 	const { systemTheme, theme, setTheme } = useTheme()
+	const [current, setCurrent] = useState('system')
 	const currentTheme = theme === 'system' ? systemTheme : theme
+
+	useEffect(() => {
+		if (theme === 'dark') setCurrent('dark')
+		if (theme === 'light') setCurrent('light')
+	}, [theme])
+
 
 	return (
 		<button
 			onClick={() => theme === 'dark' ? setTheme('light') : setTheme('dark')}
-			className='text-[12px] bg-gray-800 dark:bg-gray-50 hover:bg-gray-600 dark:hover:bg-gray-300 transition-all duration-100 text-white dark:text-gray-800 px-8 py-2 rounded-lg absolute bottom-32'>
-			Toggle Mode
+			className='text-light-gray transition-all p-1 duration-100 rounded-full'>
+			{current === 'light' ? <MoonIcon width={18} /> : <SunIcon width={18} />}
 		</button>
 	)
 
