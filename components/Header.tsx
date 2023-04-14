@@ -21,8 +21,7 @@ const Header: FC<StoreProps> = ({ authenticationStore }) => {
 					width={74} />
 			</Link>
 			<div className={style.userWrapper}>
-				<UserInitial/>
-				<button onClick={authenticationStore?.singOut}>sing out</button>
+				<UserInitial handleSingOut={authenticationStore!.singOut}/>
 				<ToggleDarkMode />
 			</div>
 		</div>
