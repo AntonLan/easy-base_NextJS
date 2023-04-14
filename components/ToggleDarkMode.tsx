@@ -18,8 +18,7 @@ const ToggleDarkMode: FC = () => {
 		<button
 			onClick={() => theme === 'dark' ? setTheme('light') : setTheme('dark')}
 			className='text-light-gray transition-all p-1 duration-100 rounded-full'>
-			{current === 'light' && <MoonIcon width={18} />}
-			{current === 'dark' && <SunIcon width={18} />}
+			{current === 'light' ? <MoonIcon width={18} /> : <SunIcon width={18} />}
 		</button>
 	)
 

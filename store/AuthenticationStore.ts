@@ -99,6 +99,10 @@ class AuthenticationStore {
 
 	singOut = () => {
 		runInAction(() => {
+			this.userName = ''
+			this.password = ''
+			this.email = ''
+			this.isLoading = false
 			this.isAuth = false
 		})
 		localStorage.clear()
