@@ -18,8 +18,10 @@ body {
   display: flex;
 }
 
-.createBtn {
-  @apply dark:bg-red-900;
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 ::-webkit-scrollbar {

@@ -1,23 +1,12 @@
 import { FC } from 'react'
 import Link from 'next/link'
 import style from '@/styles/SideBar.module.scss'
-import { inject, observer } from 'mobx-react'
-import InjectNames from '@/store/configuration/storeIdentifier'
 import { useRouter } from 'next/router'
-import { ModalMode } from '@/model/ModalMode'
-import { StoreProps } from '@/model/StoreProps'
-import ToggleDarkMode from '@/components/ToggleDarkMode'
 
 
-const SideBar: FC<StoreProps> = ({ userStore }) => {
+const SideBar: FC = () => {
 	const router = useRouter()
 	const currentRoute = router.pathname
-
-
-	const handleOpen = (mode: ModalMode) => {
-		userStore?.changeMode(mode)
-		userStore?.openModal()
-	}
 
 	return (
 		<div className={style.sidebarContainer}>
@@ -37,24 +26,10 @@ const SideBar: FC<StoreProps> = ({ userStore }) => {
 							<span>Organization</span>
 						</Link>
 					</li>
-					<li>
-						<button
-							onClick={() => handleOpen(ModalMode.CREATE_ORDER)}
-							className={style.createBtn}>
-							Create Order
-						</button>
-					</li>
-					<li>
-						<button
-							onClick={() => handleOpen(ModalMode.CREATE_ORGANIZATION)}
-							className={style.createBtn}>
-							Create organization
-						</button>
-					</li>
 				</ul>
 			</div>
 		</div>
 	)
 }
 
-export default inject(InjectNames.UserStore)(observer(SideBar))
+export default SideBar

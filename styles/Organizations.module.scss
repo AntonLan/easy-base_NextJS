@@ -1,3 +1,3 @@
 .cardContainer {
-  @apply w-[100%] h-[calc(100vh_-_81px)] overflow-y-auto mx-auto gap-1 mt-5 flex flex-wrap content-start border-2 rounded-tl-md rounded-bl-md shadow-md;
+  @apply w-full h-[calc(100vh_-_111px)] overflow-y-auto mx-auto gap-1 flex flex-wrap content-start border-2 rounded-tl-md rounded-bl-md shadow-md;
 }

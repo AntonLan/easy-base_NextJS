@@ -1,0 +1,13 @@
+.container {
+  @apply bg-white h-[50px] px-6 flex items-center flex-row justify-between shadow-inner;
+
+  input {
+    @apply shadow-inner bg-gray-100 appearance-none rounded w-[300px] py-2 px-3 text-gray-700 focus:outline-none
+    leading-tight placeholder-gray-300 placeholder:font-light;
+  }
+
+  .createBtn {
+    @apply flex items-center gap-2 text-white bg-primary hover:bg-main shadow-md dark:bg-gray-700 dark:hover:bg-gray-900 font-medium rounded-lg text-sm px-3 py-1.5 text-center;
+  }
+}
+

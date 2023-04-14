@@ -20,7 +20,7 @@
   }
 
   .dropMenu {
-    @apply w-[150px] rounded-2xl transition-all duration-500 absolute top-[50px] right-[10px] z-50 bg-light-gray shadow-md dark:bg-gray-700;
+    @apply w-[150px] rounded-2xl transition-all duration-500 absolute top-[50px] right-[10px] z-50 bg-light-gray shadow-md dark:bg-gray-700 divide-y;
   }
 
   h1 {
