@@ -4,6 +4,7 @@ import InjectNames from '@/store/configuration/storeIdentifier'
 import style from '@/styles/User.module.scss'
 import { svgUtils } from '@/utils/svgUtils'
 import { StoreProps } from '@/model/StoreProps'
+import Link from 'next/link'
 
 interface UserInitialProps extends StoreProps {
 	handleSingOut: () => void
@@ -11,7 +12,7 @@ interface UserInitialProps extends StoreProps {
 }
 
 
-const UserInitial: FC<UserInitialProps> = ({ userStore , handleSingOut}) => {
+const UserInitial: FC<UserInitialProps> = ({ userStore, handleSingOut }) => {
 
 	const singOut = () => {
 		handleSingOut()
@@ -29,16 +30,22 @@ const UserInitial: FC<UserInitialProps> = ({ userStore , handleSingOut}) => {
 					</svg>
 				</div>
 			</div>
-				{userStore?.isUserDropMenu &&
-					<div onClick={userStore?.handleClose}>
-						<div
-							onClick={(e) => e.stopPropagation()}
-							className='w-[150px] rounded-2xl transition-all duration-500 absolute top-[50px] right-[10px] z-50 bg-light-gray shadow-md'>
-						<div className='px-3.5 py-2 cursor-pointer text-black'>User: {userStore?.user.userName}</div>
-						<button className='px-3.5 py-2 text-black cursor-pointer' onClick={singOut}>sing out</button>
-						</div>
+			{userStore?.isUserDropMenu &&
+				<div
+					className={style.menuContainer}
+					onClick={userStore?.handleClose}>
+					<div className={style.bgMenu}></div>
+					<div
+						onClick={(e) => e.stopPropagation()}
+						className={style.dropMenu}>
+						<Link href='/about'>
+							<h1>About</h1>
+						</Link>
+						<h1>User: {userStore?.user.userName}</h1>
+						<button>sing out</button>
 					</div>
-				}
+				</div>
+			}
 		</div>
 	)
 }
