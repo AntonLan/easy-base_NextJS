@@ -1,8 +1,26 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import Head from 'next/head'
 import { LayoutProps } from '@/model/LayoutProps'
+import { useRouter } from 'next/router'
+import LocalUtils from '@/utils/LocalUtils'
+import { inject, observer } from 'mobx-react'
+import InjectNames from '@/store/configuration/storeIdentifier'
 
-const AuthenticationLayout: FC<LayoutProps> = ({children}) => {
+const AuthenticationLayout: FC<LayoutProps> = ({children, authenticationStore}) => {
+	const router = useRouter()
+
+	useEffect(() => {
+		checkAuth()
+	}, [authenticationStore?.isAuth])
+
+
+	const checkAuth = () => {
+		if (LocalUtils.getToken()) {
+			router.replace('/')
+			console.log('test')
+		}
+	}
+
 	return (
 		<>
 			<Head>
@@ -17,4 +35,4 @@ const AuthenticationLayout: FC<LayoutProps> = ({children}) => {
 	)
 }
 
-export default AuthenticationLayout
+export default inject(InjectNames.AuthenticationStore)(observer(AuthenticationLayout))

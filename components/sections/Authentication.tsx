@@ -1,9 +1,8 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import style from '@/styles/Login.module.scss'
 import { useRouter } from 'next/router'
-import LocalUtils from '@/utils/LocalUtils'
 import Loader from '@/components/Loader'
 import NotificationMessage from '@/components/NotificationMessage'
 import { StoreProps } from '@/model/StoreProps'
@@ -11,22 +10,12 @@ import { StoreProps } from '@/model/StoreProps'
 const Authentication: FC<StoreProps> = ({ authenticationStore }) => {
 	const router = useRouter()
 
-	useEffect(() => {
-		checkAuth()
-	}, [authenticationStore?.isAuth])
-
 	const handleSingUp = () => {
 		authenticationStore?.singUp()
 	}
 
 	const handleLogIn = () => {
 		router.push('/login')
-	}
-
-	const checkAuth = () => {
-		if (LocalUtils.getToken()) {
-			router.replace('/')
-		}
 	}
 
 
