@@ -11,6 +11,11 @@ class LocalUtils {
 		return token
 	}
 
+	getLocalData = () => {
+		let id = localStorage.getItem('id')
+		let token = localStorage.getItem('token')
+		return { id, token }
+	}
 
 }
 

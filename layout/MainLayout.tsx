@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import Head from 'next/head'
 import Header from '@/components/Header'
 import SideBar from '@/components/SideBar'
@@ -10,8 +10,29 @@ import NotificationMessage from '@/components/NotificationMessage'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import ContentBar from '@/components/ContentBar'
+import { useRouter } from 'next/router'
+import LocalUtils from '@/utils/LocalUtils'
 
-const MainLayout: FC<LayoutProps> = ({ children, userStore }) => {
+const MainLayout: FC<LayoutProps> = ({ children, userStore, authenticationStore}) => {
+	const router = useRouter()
+
+
+	useEffect(() => {
+		checkAuth()
+		let id = LocalUtils.getUserId()
+		let token = LocalUtils.getToken()
+		if (id && token) {
+			userStore?.getUserData(id, token)
+		}
+	}, [authenticationStore?.isAuth])
+
+	const checkAuth = () => {
+		if (!LocalUtils.getToken()) {
+			router.replace('/login')
+		}
+	}
+
+
 	return (
 		<>
 			<Head>
@@ -37,4 +58,4 @@ const MainLayout: FC<LayoutProps> = ({ children, userStore }) => {
 	)
 }
 
-export default inject(InjectNames.UserStore)(observer(MainLayout))
+export default inject(InjectNames.UserStore, InjectNames.AuthenticationStore)(observer(MainLayout))
