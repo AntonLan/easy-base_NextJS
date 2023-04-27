@@ -8,7 +8,6 @@ import Link from 'next/link'
 
 interface UserInitialProps extends StoreProps {
 	handleSingOut: () => void
-
 }
 
 

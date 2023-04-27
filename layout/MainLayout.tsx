@@ -12,7 +12,7 @@ import InjectNames from '@/store/configuration/storeIdentifier'
 import ContentBar from '@/components/ContentBar'
 import { useAuth } from '@/components/hooks/useAuth'
 
-const MainLayout: FC<LayoutProps> = ({ children, userStore, authenticationStore}) => {
+const MainLayout: FC<LayoutProps> = ({ children, userStore}) => {
 	useAuth('/login')
 
 	return (

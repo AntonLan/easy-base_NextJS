@@ -5,7 +5,7 @@ import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import { useAuth } from '@/components/hooks/useAuth'
 
-const AuthenticationLayout: FC<LayoutProps> = ({ children, authenticationStore }) => {
+const AuthenticationLayout: FC<LayoutProps> = ({ children }) => {
 	useAuth('/')
 
 	return (
