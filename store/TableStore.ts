@@ -2,7 +2,6 @@ import { action, makeObservable, observable, runInAction } from 'mobx'
 import { OrderType } from '@/model/OrderType'
 
 class TableStore {
-
 	currentPage: number = 1
 	countPage?: number = 1
 	limit: number = 5

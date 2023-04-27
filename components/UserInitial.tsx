@@ -8,7 +8,6 @@ import Link from 'next/link'
 
 interface UserInitialProps extends StoreProps {
 	handleSingOut: () => void
-
 }
 
 
@@ -42,7 +41,7 @@ const UserInitial: FC<UserInitialProps> = ({ userStore, handleSingOut }) => {
 							<h1>About</h1>
 						</Link>
 						<h1>User: {userStore?.user.userName}</h1>
-						<button>sing out</button>
+						<button onClick={singOut}>sing out</button>
 					</div>
 				</div>
 			}

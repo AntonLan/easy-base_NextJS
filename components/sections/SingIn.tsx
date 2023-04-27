@@ -1,40 +1,22 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import style from '@/styles/Login.module.scss'
-import { useRouter } from 'next/router'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import Loader from '@/components/Loader'
 import NotificationMessage from '@/components/NotificationMessage'
-import LocalUtils from '@/utils/LocalUtils'
 import { StoreProps } from '@/model/StoreProps'
+import { useAuth } from '@/components/hooks/useAuth'
 
 const SingIn: FC<StoreProps> = ({ authenticationStore }) => {
-	const router = useRouter()
-
-
-	useEffect(() => {
-		checkAuth()
-	}, [authenticationStore?.isAuth])
-
+	const { handleSingUp } = useAuth()
 
 	const handleLogIn = () => {
 		authenticationStore?.singIn()
 	}
 
-	const handleSingUp = () => {
-		router.push('/registration')
-	}
-
-	const checkAuth = () => {
-		if (LocalUtils.getToken()) {
-			router.replace('/')
-		}
-	}
-
 	if (authenticationStore?.isLoading) {
 		return <Loader />
 	}
-
 
 	return (
 		<>

@@ -1,8 +1,13 @@
 import { FC } from 'react'
 import Head from 'next/head'
 import { LayoutProps } from '@/model/LayoutProps'
+import { inject, observer } from 'mobx-react'
+import InjectNames from '@/store/configuration/storeIdentifier'
+import { useAuth } from '@/components/hooks/useAuth'
 
-const AuthenticationLayout: FC<LayoutProps> = ({children}) => {
+const AuthenticationLayout: FC<LayoutProps> = ({ children }) => {
+	useAuth('/')
+
 	return (
 		<>
 			<Head>
@@ -17,4 +22,4 @@ const AuthenticationLayout: FC<LayoutProps> = ({children}) => {
 	)
 }
 
-export default AuthenticationLayout
+export default inject(InjectNames.AuthenticationStore)(observer(AuthenticationLayout))

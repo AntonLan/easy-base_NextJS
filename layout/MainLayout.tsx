@@ -10,8 +10,11 @@ import NotificationMessage from '@/components/NotificationMessage'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import ContentBar from '@/components/ContentBar'
+import { useAuth } from '@/components/hooks/useAuth'
 
-const MainLayout: FC<LayoutProps> = ({ children, userStore }) => {
+const MainLayout: FC<LayoutProps> = ({ children, userStore}) => {
+	useAuth('/login')
+
 	return (
 		<>
 			<Head>
@@ -37,4 +40,4 @@ const MainLayout: FC<LayoutProps> = ({ children, userStore }) => {
 	)
 }
 
-export default inject(InjectNames.UserStore)(observer(MainLayout))
+export default inject(InjectNames.UserStore, InjectNames.AuthenticationStore)(observer(MainLayout))
