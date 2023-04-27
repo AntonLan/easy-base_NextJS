@@ -17,9 +17,14 @@ export const useAuth = (path?: string) => {
 	}, [authenticationStore?.isAuth])
 
 	const checkAuth = () => {
-		if (!LocalUtils.getToken()) {
-			if (path) router.replace(path)
+		if (path === '/login') {
+			if (!LocalUtils.getToken()) router.replace(path)
 		}
+
+		if (path === '/') {
+			if (LocalUtils.getToken()) router.replace(path)
+		}
+
 	}
 
 	const getData = () => {

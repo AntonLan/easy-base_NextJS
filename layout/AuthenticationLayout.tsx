@@ -1,24 +1,12 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import Head from 'next/head'
 import { LayoutProps } from '@/model/LayoutProps'
-import { useRouter } from 'next/router'
-import LocalUtils from '@/utils/LocalUtils'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
+import { useAuth } from '@/components/hooks/useAuth'
 
-const AuthenticationLayout: FC<LayoutProps> = ({children, authenticationStore}) => {
-	const router = useRouter()
-
-	useEffect(() => {
-		checkAuth()
-	}, [authenticationStore?.isAuth])
-
-
-	const checkAuth = () => {
-		if (LocalUtils.getToken()) {
-			router.replace('/')
-		}
-	}
+const AuthenticationLayout: FC<LayoutProps> = ({ children, authenticationStore }) => {
+	useAuth('/')
 
 	return (
 		<>

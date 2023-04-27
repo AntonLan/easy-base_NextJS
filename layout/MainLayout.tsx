@@ -10,27 +10,10 @@ import NotificationMessage from '@/components/NotificationMessage'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import ContentBar from '@/components/ContentBar'
-import { useRouter } from 'next/router'
-import LocalUtils from '@/utils/LocalUtils'
+import { useAuth } from '@/components/hooks/useAuth'
 
 const MainLayout: FC<LayoutProps> = ({ children, userStore, authenticationStore}) => {
-	const router = useRouter()
-
-
-	useEffect(() => {
-		checkAuth()
-		let id = LocalUtils.getUserId()
-		let token = LocalUtils.getToken()
-		if (id && token) {
-			userStore?.getUserData(id, token)
-		}
-	}, [authenticationStore?.isAuth])
-
-	const checkAuth = () => {
-		if (!LocalUtils.getToken()) {
-			router.replace('/login')
-		}
-	}
+	useAuth('/login')
 
 
 	return (
