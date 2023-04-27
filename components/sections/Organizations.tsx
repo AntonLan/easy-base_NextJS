@@ -5,7 +5,7 @@ import Card from '@/components/Card'
 import style from '@/styles/Organizations.module.scss'
 import { StoreProps } from '@/model/StoreProps'
 
-const Organizations: FC<StoreProps> = ({ userStore, authenticationStore }) => {
+const Organizations: FC<StoreProps> = ({ userStore }) => {
 
 	return (
 		<div className={style.cardContainer}>
@@ -16,4 +16,4 @@ const Organizations: FC<StoreProps> = ({ userStore, authenticationStore }) => {
 	)
 }
 
-export default inject(InjectNames.UserStore, InjectNames.AuthenticationStore)(observer(Organizations))
+export default inject(InjectNames.UserStore)(observer(Organizations))
