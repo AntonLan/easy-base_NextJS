@@ -2,27 +2,21 @@ import { FC } from 'react'
 import { inject, observer } from 'mobx-react'
 import InjectNames from '@/store/configuration/storeIdentifier'
 import style from '@/styles/Login.module.scss'
-import { useRouter } from 'next/router'
 import Loader from '@/components/Loader'
 import NotificationMessage from '@/components/NotificationMessage'
 import { StoreProps } from '@/model/StoreProps'
+import { useAuth } from '@/components/hooks/useAuth'
 
 const Authentication: FC<StoreProps> = ({ authenticationStore }) => {
-	const router = useRouter()
+	const { handleLogIn } = useAuth()
 
 	const handleSingUp = () => {
 		authenticationStore?.singUp()
 	}
 
-	const handleLogIn = () => {
-		router.push('/login')
-	}
-
-
 	if (authenticationStore?.isLoading) {
 		return <Loader />
 	}
-
 
 	return (
 		<>

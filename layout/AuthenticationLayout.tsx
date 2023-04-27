@@ -17,7 +17,6 @@ const AuthenticationLayout: FC<LayoutProps> = ({children, authenticationStore}) 
 	const checkAuth = () => {
 		if (LocalUtils.getToken()) {
 			router.replace('/')
-			console.log('test')
 		}
 	}
 

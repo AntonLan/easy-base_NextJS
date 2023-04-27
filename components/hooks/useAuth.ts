@@ -1,23 +1,24 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import LocalUtils from '@/utils/LocalUtils'
-import AuthenticationStore from '@/store/AuthenticationStore'
-import UserStore from '@/store/UserStore'
+import { autorun } from 'mobx'
+import { stores } from '@/store/configuration/storeInitializer'
 
-export const useAuth = (path: string) => {
+export const useAuth = (path?: string) => {
 	const router = useRouter()
-	const authenticationStore = new AuthenticationStore()
-	const userStore = new UserStore()
+	const { authenticationStore, userStore } = stores
 
 
 	useEffect(() => {
-		checkAuth()
-		getData()
+		autorun(() => {
+			checkAuth()
+			getData()
+		})
 	}, [authenticationStore?.isAuth])
 
 	const checkAuth = () => {
 		if (!LocalUtils.getToken()) {
-			router.replace(path)
+			if (path) router.replace(path)
 		}
 	}
 
@@ -29,7 +30,7 @@ export const useAuth = (path: string) => {
 	}
 
 	const handleLogIn = () => {
-		authenticationStore?.singIn()
+		router.push('/login')
 	}
 
 	const handleSingUp = () => {
