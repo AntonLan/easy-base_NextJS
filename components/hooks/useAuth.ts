@@ -10,21 +10,19 @@ export const useAuth = (path?: string) => {
 
 
 	useEffect(() => {
-		autorun(() => {
-			checkAuth()
-			getData()
-		})
+		checkAuth()
+		getData()
 	}, [authenticationStore?.isAuth])
 
 	const checkAuth = () => {
-		if (path === '/login') {
-			if (!LocalUtils.getToken()) router.replace(path)
+		switch (path) {
+			case '/login':
+				if (!LocalUtils.getToken()) router.replace(path)
+				return
+			case '/':
+				if (LocalUtils.getToken()) router.replace(path)
+				return
 		}
-
-		if (path === '/') {
-			if (LocalUtils.getToken()) router.replace(path)
-		}
-
 	}
 
 	const getData = () => {
