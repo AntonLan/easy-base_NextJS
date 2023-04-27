@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import LocalUtils from '@/utils/LocalUtils'
-import { autorun } from 'mobx'
 import { stores } from '@/store/configuration/storeInitializer'
 
 export const useAuth = (path?: string) => {
