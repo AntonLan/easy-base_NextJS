@@ -6,7 +6,6 @@ import { MoonIcon } from '@heroicons/react/24/solid'
 const ToggleDarkMode: FC = () => {
 	const { systemTheme, theme, setTheme } = useTheme()
 	const [current, setCurrent] = useState('system')
-	// @ts-ignore: error message
 	const currentTheme = theme === 'system' ? systemTheme : theme
 
 	useEffect(() => {
