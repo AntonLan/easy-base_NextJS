@@ -58,7 +58,7 @@ class TableStore {
 		if (orders)
 			for (let i = 0; i < this.limit; i++) {
 				// @ts-ignore: error message
-				result.push(orders[startIndex])
+				if (orders[startIndex]) result.push(orders[startIndex])
 				startIndex += 1
 			}
 		return result
