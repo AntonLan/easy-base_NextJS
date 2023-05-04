@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { OrganizationType } from '@/model/OrganizationType'
 import style from '@/styles/Modal.module.scss'
 import { ModalMode } from '@/model/ModalMode'
+import { observer } from 'mobx-react'
 
 
 interface FormOrganizationProps {
@@ -90,4 +91,4 @@ const FormOrganizationModalContent: FC<FormOrganizationProps> =
 		)
 	}
 
-export default FormOrganizationModalContent
+export default observer(FormOrganizationModalContent)

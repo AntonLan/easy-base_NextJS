@@ -11,7 +11,7 @@ const Pagination: FC<StoreProps> = ({ tableStore, userStore }) => {
 			<div className={style.wrapper}>
 				<SvgNextButton title={'Previous'} handleClick={tableStore?.previousPage} />
 				<div className={style.page}>
-					{tableStore?.getPages(userStore?.user.orders?.length).map((page, index) => (
+					{tableStore?.getPages(userStore?.user.orders?.length).map((page) => (
 						<p onClick={() => tableStore?.changePage(page)}
 							 key={page}
 							 className={tableStore?.currentPage === page ? style.pageActive : ''}
