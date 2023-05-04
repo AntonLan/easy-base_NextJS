@@ -8,7 +8,7 @@ import { StoreProps } from '@/model/StoreProps'
 import { useAuth } from '@/components/hooks/useAuth'
 
 const SingIn: FC<StoreProps> = ({ authenticationStore }) => {
-	const { handleSingUp } = useAuth()
+	const { handleSingUp } = useAuth('/')
 
 	const handleLogIn = () => {
 		authenticationStore?.singIn()

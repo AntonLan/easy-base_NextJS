@@ -8,7 +8,7 @@ import { StoreProps } from '@/model/StoreProps'
 import { useAuth } from '@/components/hooks/useAuth'
 
 const Authentication: FC<StoreProps> = ({ authenticationStore }) => {
-	const { handleLogIn } = useAuth()
+	const { handleLogIn } = useAuth('/')
 
 	const handleSingUp = () => {
 		authenticationStore?.singUp()
