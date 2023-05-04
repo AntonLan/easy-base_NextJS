@@ -57,6 +57,7 @@ class TableStore {
 		let startIndex = (this.currentPage - 1) * this.limit
 		if (orders)
 			for (let i = 0; i < this.limit; i++) {
+				// @ts-ignore: error message
 				if (orders[startIndex]) result.push(orders[startIndex])
 				startIndex += 1
 			}
