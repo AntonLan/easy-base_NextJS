@@ -4,8 +4,10 @@ import InjectNames from '@/store/configuration/storeIdentifier'
 import Card from '@/components/Card'
 import style from '@/styles/Organizations.module.scss'
 import { StoreProps } from '@/model/StoreProps'
+import { useFetching } from '@/components/hooks/useFetching'
 
 const Organizations: FC<StoreProps> = ({ userStore }) => {
+	useFetching()
 
 	return (
 		<div className={style.cardContainer}>

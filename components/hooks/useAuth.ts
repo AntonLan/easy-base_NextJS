@@ -5,12 +5,11 @@ import { stores } from '@/store/configuration/storeInitializer'
 
 export const useAuth = (path?: string) => {
 	const router = useRouter()
-	const { authenticationStore, userStore } = stores
+	const { authenticationStore } = stores
 
 
 	useEffect(() => {
 		checkAuth()
-		getData()
 	}, [authenticationStore?.isAuth])
 
 	const checkAuth = () => {
@@ -24,13 +23,6 @@ export const useAuth = (path?: string) => {
 		}
 	}
 
-	const getData = () => {
-		let { id, token } = LocalUtils.getLocalData()
-		if (id && token) {
-			userStore?.getUserData(id, token)
-		}
-	}
-
 	const handleLogIn = () => {
 		router.push('/login')
 	}
@@ -39,5 +31,5 @@ export const useAuth = (path?: string) => {
 		router.push('/registration')
 	}
 
-	return { handleLogIn, handleSingUp, getData, checkAuth }
+	return { handleLogIn, handleSingUp }
 }
