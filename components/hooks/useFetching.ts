@@ -7,17 +7,14 @@ export const useFetching = () => {
 
 
 	useEffect(() => {
+		const getData = () => {
+			let { id, token } = LocalUtils.getLocalData()
+			if (id && token) {
+				userStore?.getUserData(id, token)
+			}
+		}
+
 		getData()
 	}, [])
-
-
-	const getData = () => {
-		let { id, token } = LocalUtils.getLocalData()
-		if (id && token) {
-			userStore?.getUserData(id, token)
-		}
-	}
-
-	return {getData}
 }
 
