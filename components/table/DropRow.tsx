@@ -9,14 +9,13 @@ import { StoreProps } from '@/model/StoreProps'
 
 interface DropRowProps extends StoreProps {
 	order: OrderType
-	isOpen: (id?: string) => void
+
 }
 
-const DropRow: FC<DropRowProps> = ({ order, isOpen, userStore }) => {
+const DropRow: FC<DropRowProps> = ({ order, userStore }) => {
 
 	const handleUpdate = () => {
 		userStore?.updateOrder(order)
-		isOpen()
 	}
 
 	return (

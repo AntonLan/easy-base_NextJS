@@ -31,7 +31,7 @@ const TableRow: FC<TableRowProps> = ({ order, userStore }) => {
 				</td>
 			</tr>
 			{order.isSelected &&
-				<DropRow order={order} isOpen={userStore?.handleOpen!} />
+				<DropRow order={order} />
 			}
 		</>
 	)

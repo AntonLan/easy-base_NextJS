@@ -5,12 +5,7 @@ import { useFetching } from '@/components/hooks/useFetching'
 
 const Main: FC = () => {
 	useFetching()
-
-	return (
-		<>
-			<Table />
-		</>
-	)
+	return <Table />
 }
 
 export default Main
