@@ -1,9 +1,9 @@
-import { FC } from 'react'
+import { ChangeEvent, FC } from 'react'
 import { OrderType } from '@/model/OrderType'
 import style from '@/styles/Modal.module.scss'
 
 interface FormOrderProps {
-	handleChange: (event: any) => void
+	handleChange: (event: ChangeEvent<HTMLInputElement>) => void
 	createOrder: () => void
 	handleClose: () => void
 	order: OrderType

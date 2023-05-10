@@ -1,16 +1,16 @@
-import { FC } from 'react'
+import { ChangeEvent, FC } from 'react'
 import { ProgressEnum } from '@/model/ProgressEnum'
 
 
 interface OrderProgressProps {
 	defaultValue?: ProgressEnum
 	value?: ProgressEnum
-	changeProgress?: (event: any) => void
+	changeProgress?: (event: ChangeEvent<HTMLElement>) => void
 }
 
-const OrderProgress: FC<OrderProgressProps> = ({defaultValue, value, changeProgress}) => {
+const OrderProgress: FC<OrderProgressProps> = ({ defaultValue, value, changeProgress }) => {
 	return (
-		<select name="progress"
+		<select name='progress'
 						defaultValue={defaultValue}
 						value={value}
 						onChange={changeProgress}>

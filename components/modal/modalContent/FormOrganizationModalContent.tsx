@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { ChangeEvent, FC } from 'react'
 import { OrganizationType } from '@/model/OrganizationType'
 import style from '@/styles/Modal.module.scss'
 import { ModalMode } from '@/model/ModalMode'
@@ -7,7 +7,7 @@ import { observer } from 'mobx-react'
 
 interface FormOrganizationProps {
 	mode?: ModalMode
-	handleChange: (event: any) => void
+	handleChange: (event: ChangeEvent<HTMLInputElement>) => void
 	createOrganization?: () => void
 	updateOrganization?: (organization: OrganizationType) => void
 	handleClose: () => void

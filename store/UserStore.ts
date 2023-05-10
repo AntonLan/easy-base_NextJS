@@ -5,6 +5,7 @@ import { OrganizationType } from '@/model/OrganizationType'
 import { OrderType } from '@/model/OrderType'
 import { ModalMode } from '@/model/ModalMode'
 import Utils from '@/utils/Utils'
+import { ChangeEvent } from 'react'
 
 
 class UserStore {
@@ -47,7 +48,8 @@ class UserStore {
 		}
 	}
 
-	changeHandler = (event: any) => {
+
+	changeHandler = (event: ChangeEvent<HTMLInputElement>) : void => {
 		runInAction(() => {
 			this.organization = { ...this.organization, [event?.target.name]: event?.target.value }
 			this.order = { ...this.order, [event?.target.name]: event?.target.value }
@@ -183,7 +185,7 @@ class UserStore {
 			})
 		} catch (e: any) {
 			runInAction(() => {
-				this.error = this.error = e.request.statusText
+				this.error = e.request.statusText
 			})
 		}
 	}
@@ -223,7 +225,7 @@ class UserStore {
 	}
 
 
-	sortUser = (sortedBy: any) => {
+	sortUser = (sortedBy: keyof OrderType) => {
 		runInAction(() => {
 			if (this.user)
 				this.user.orders = Utils.sortArrayOfObjects(this.user?.orders!, sortedBy, 'ascending')
