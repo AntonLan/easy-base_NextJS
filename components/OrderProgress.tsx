@@ -5,7 +5,7 @@ import { ProgressEnum } from '@/model/ProgressEnum'
 interface OrderProgressProps {
 	defaultValue?: ProgressEnum
 	value?: ProgressEnum
-	changeProgress?: (event: ChangeEvent<HTMLElement>) => void
+	changeProgress?: (event: ChangeEvent<HTMLSelectElement>) => void
 }
 
 const OrderProgress: FC<OrderProgressProps> = ({ defaultValue, value, changeProgress }) => {

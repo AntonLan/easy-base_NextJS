@@ -49,7 +49,7 @@ class UserStore {
 	}
 
 
-	changeHandler = (event: ChangeEvent<HTMLInputElement>) : void => {
+	changeHandler = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) : void => {
 		runInAction(() => {
 			this.organization = { ...this.organization, [event?.target.name]: event?.target.value }
 			this.order = { ...this.order, [event?.target.name]: event?.target.value }
